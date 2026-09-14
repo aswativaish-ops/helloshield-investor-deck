@@ -30,16 +30,16 @@ let demoTimer;
 
 const plans = {
   free: {
-    name: 'Free', price: '$0', kind: 'acquisition',
-    value: 'Try inbound screening', detail: 'Conversion funnel only — not a paid unit',
-    allow: '20 inbound minutes · 1 saved rule · no outbound tasks',
-    overage: 'Hard cap; upgrade to continue',
+    name: 'Free', price: '$0', kind: 'trial', period: '/ 1 month only',
+    value: 'One-month inbound screening trial', detail: 'Then choose Basic, Plus, or Pro to continue',
+    allow: '20 inbound minutes · 1 saved rule · no outbound tasks · expires after 30 days',
+    overage: 'Hard cap; pick a paid plan to continue',
     arpu: '$0', cost: '≤ $1.20 subsidy', profit: '—', margin: 'n/a',
     cac: 'Not a paid CAC', payback: 'n/a', ratio: 'n/a',
-    formula: 'Free is an acquisition subsidy. Paid LTV / CAC does not apply.'
+    formula: 'Free is a 30-day trial only. It is not a standing free tier. After the month, the user selects Basic, Plus, or Pro.'
   },
   basic: {
-    name: 'Basic', price: '$8.99', kind: 'paid',
+    name: 'Basic', price: '$8.99', kind: 'paid', period: '/ month',
     value: 'Inbound screening', detail: 'Saved personal rules',
     allow: '120 inbound minutes / month',
     overage: '$0.08 / extra inbound minute (proposed)',
@@ -48,7 +48,7 @@ const plans = {
     formula: 'LTV $209.67 = $6.29 GP ÷ 3% churn. $209.67 ÷ $36 CAC = 5.8×. Payback $36 ÷ $6.29 = 5.7 months.'
   },
   plus: {
-    name: 'Plus', price: '$14.99', kind: 'paid',
+    name: 'Plus', price: '$14.99', kind: 'paid', period: '/ month',
     value: 'Inbound + approved outbound tasks', detail: 'Calendar coordination (roadmap)',
     allow: '180 inbound minutes + 20 outbound tasks / month',
     overage: '$0.08 / min inbound · $0.25 / extra outbound task (proposed)',
@@ -57,7 +57,7 @@ const plans = {
     formula: 'Plus sticker is $14.99. Blended paid ARPU of $13.59 is the 40/40/20 mix, not the Plus price. LTV $349.67 = $10.49 ÷ 3%. $349.67 ÷ $55 = 6.4×. Payback 5.2 months.'
   },
   pro: {
-    name: 'Pro', price: '$19.99', kind: 'paid',
+    name: 'Pro', price: '$19.99', kind: 'paid', period: '/ month',
     value: 'Higher recurring-task capacity', detail: 'Same workflow, more allowance',
     allow: '300 inbound minutes + 50 outbound tasks / month',
     overage: '$0.08 / min inbound · $0.25 / extra outbound task (proposed)',
@@ -294,21 +294,21 @@ function slideHTML(p) {
     const plan = plans[state.plan];
     const paid = plan.kind === 'paid';
     return `<section class="slide" id="business-model">
-      ${heading(6, 'BUSINESS MODEL', 'Subscription pricing<br><em>With 70% target gross margin</em>')}
+      ${heading(6, 'BUSINESS MODEL', 'One-month trial<br><em>Then a paid plan</em>')}
       <div class="plan-strip" role="tablist" aria-label="Proposed plans">${Object.keys(plans).map(key =>
-        button(`${plans[key].name}<small>${plans[key].price}</small>`, 'plan-' + key, state.plan === key ? 'selected' : '', tabAttrs(state.plan === key))
+        button(`${plans[key].name}<small>${key === 'free' ? '$0 · 1 mo' : plans[key].price}</small>`, 'plan-' + key, state.plan === key ? 'selected' : '', tabAttrs(state.plan === key))
       ).join('')}</div>
       <div class="model-grid">
         <div class="selected-plan">
-          <span class="kicker">${state.plan === 'plus' ? 'RECOMMENDED STARTING PAID PLAN' : state.plan === 'free' ? 'ACQUISITION TIER' : 'PROPOSED PAID PLAN'}</span>
+          <span class="kicker">${state.plan === 'plus' ? 'RECOMMENDED STARTING PAID PLAN' : state.plan === 'free' ? '30-DAY TRIAL ONLY' : 'PROPOSED PAID PLAN'}</span>
           <h3>${plan.name}</h3>
-          <strong>${plan.price}<small>/ month</small></strong>
+          <strong>${plan.price}<small>${plan.period}</small></strong>
           <p>${plan.value}</p>
           <p>${plan.detail}</p>
           <p class="allow">${plan.allow}</p>
         </div>
         <div class="economics">
-          <span class="kicker">${paid ? 'PAID UNIT ECONOMICS · TARGET MODEL · UNVALIDATED' : 'FREE TIER · CONVERSION FUNNEL'}</span>
+          <span class="kicker">${paid ? 'PAID UNIT ECONOMICS · TARGET MODEL · UNVALIDATED' : 'TRIAL · THEN CHOOSE A PAID PLAN'}</span>
           ${paid ? `
             <div class="bridge">
               <div><span>ARPU</span><b>${plan.arpu}</b></div><i>less</i>
@@ -324,16 +324,16 @@ function slideHTML(p) {
             </div>
           ` : `
             <div class="free-funnel">
-              <div><b>Job</b><span>Let a brokerage try inbound screening without a paid CAC model.</span></div>
-              <div><b>Subsidy</b><span>Direct cost capped near $1.20 / month at the 20-minute limit.</span></div>
-              <div><b>Conversion</b><span>Paid LTV / CAC starts only after upgrade to Basic, Plus, or Pro.</span></div>
+              <div><b>Month 1</b><span>Free inbound screening. No standing free tier after 30 days.</span></div>
+              <div><b>Then choose</b><span>Basic, Plus, or Pro. Service continues only on a paid plan.</span></div>
+              <div><b>Learning data</b><span>Consented trial and paid usage produce labeled call outcomes that improve screening quality.</span></div>
             </div>
             <p class="allow">${plan.formula}</p>
           `}
           <p class="cost-line">Carrier + realtime API envelope (proposed): about $0.013/min telephony plus $0.04–$0.08/min model audio, held inside the ${paid ? plan.cost : '$1.20'} direct-cost cap. Overage: ${plan.overage}.</p>
         </div>
       </div>
-      <p class="bottom-note">Plus sticker $14.99 is not the $13.59 blended ARPU. Blend = 40% Basic + 40% Plus + 20% Pro. All usage, CAC, churn, and margin figures are targets, not measured results.</p>
+      <p class="bottom-note">Free is one month only. Paid mix for $13.59 ARPU remains 40% Basic / 40% Plus / 20% Pro after conversion. All usage, CAC, churn, and margin figures are targets, not measured results.</p>
     </section>`;
   }
 
