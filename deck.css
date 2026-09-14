@@ -66,10 +66,16 @@ header {
   background: #070a1d;
   z-index: 10;
 }
-.brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; }
-.brand > span { font: 51px/1 "Instrument Serif", serif; }
-.brand i { font-style: normal; color: var(--peach); }
-.brand b { font-size: 18px; line-height: .9; text-transform: uppercase; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.brand b { font-size: 18px; line-height: 1; letter-spacing: .02em; white-space: nowrap; }
 .strap {
   text-align: center;
   font: 500 12px "IBM Plex Mono", monospace;
@@ -202,6 +208,15 @@ footer {
   justify-content: center;
   align-items: flex-start;
 }
+.hero-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.hero-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.hero-brand .product-name { margin: 0; font-size: 14px; }
 .product-name {
   font: 600 12px "IBM Plex Mono", monospace;
   letter-spacing: .16em;
@@ -654,7 +669,7 @@ td:first-child { color: var(--ink); font-weight: 600; }
 @media (max-width: 760px) {
   .strap { display: none; }
   header { grid-template-columns: 1fr auto; padding: 0 14px; }
-  .brand b { display: none; }
+  .brand b { display: inline; font-size: 16px; }
   .slide { padding: 12px 14px 16px; }
   .hero-copy { width: 100%; padding: 24px 18px; }
   .hero h1 { font-size: 42px; }
