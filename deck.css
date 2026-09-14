@@ -131,7 +131,6 @@ h2 em, h1 em {
   font-family: "Instrument Serif", serif;
   font-weight: 400;
   color: var(--peach);
-  word-spacing: .42em;
 }
 h3 { font-size: 26px; line-height: 1.12; }
 p { font-size: 16px; line-height: 1.4; color: var(--muted); }
@@ -221,7 +220,7 @@ footer {
   align-items: flex-start;
 }
 .hero h1 { font-size: clamp(42px, 6vw, 84px); line-height: .88; letter-spacing: -.05em; }
-.hero h1 em { display: block; white-space: nowrap; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.05; margin-top: 8px; word-spacing: .5em; }
+.hero h1 em { display: block; white-space: nowrap; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.05; margin-top: 8px; }
 .hero-tag { font-size: 22px; color: var(--ink); margin-top: 16px; max-width: 34ch; }
 .hero-rules { font-size: 16px; margin-top: 10px; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
@@ -707,6 +706,11 @@ td:first-child { color: var(--ink); font-weight: 600; }
   }
   .print-slide:has(.hero) {
     background: #080b20;
+  }
+  .print-slide .slide {
+    height: 720px;
+    min-height: 720px;
+    overflow: hidden;
   }
   .print-slide .slide::after {
     content: "CONFIDENTIAL · INVESTOR PREVIEW · © 2026 SWATI VAISH · HELLOSHIELD · DO NOT COPY";

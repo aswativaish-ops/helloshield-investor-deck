@@ -215,7 +215,7 @@ function slideHTML(p) {
       ['ambiguous', 'Ambiguous payment']
     ];
     return `<section class="slide" id="product">
-      ${heading(3, 'THE PRODUCT', 'One secretary for useful calls<br><em>and permitted follow-through</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
+      ${heading(3, 'THE PRODUCT', 'One secretary for useful calls<br><em>And permitted follow-through</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
       <div class="scenario-tabs" role="tablist" aria-label="Product scenarios">${tabs.map(([id, label]) =>
         button(label, 'scenario-' + id, state.scenario === id ? 'selected' : '', tabAttrs(state.scenario === id))
       ).join('')}</div>
@@ -245,7 +245,7 @@ function slideHTML(p) {
 
   if (p === 3) {
     return `<section class="slide" id="customer">
-      ${heading(4, 'TARGET AUDIENCE', 'One paying wedge first<br><em>then adjacent waves</em>')}
+      ${heading(4, 'TARGET AUDIENCE', 'One paying wedge first<br><em>Then adjacent waves</em>')}
       <div class="customer-layout">
         <div class="first-customer">
           <span class="kicker">PRIMARY INITIAL ICP</span>
@@ -270,7 +270,7 @@ function slideHTML(p) {
 
   if (p === 4) {
     return `<section class="slide" id="market">
-      ${heading(5, 'MARKET OPPORTUNITY', 'A large professional pool<br><em>a filtered, evidence-based SAM</em>')}
+      ${heading(5, 'MARKET OPPORTUNITY', 'A large professional pool<br><em>A filtered, evidence-based SAM</em>')}
       <div class="market-grid">
         <div class="market-bars">
           <div class="market-row tam"><span><b>TAM · THEORETICAL POOL</b><small>71.3M U.S. management and professional workers × $163 blended ARPU</small></span><strong>$11.6B</strong></div>
@@ -294,7 +294,7 @@ function slideHTML(p) {
     const plan = plans[state.plan];
     const paid = plan.kind === 'paid';
     return `<section class="slide" id="business-model">
-      ${heading(6, 'BUSINESS MODEL', 'Subscription pricing<br><em>with 70% target gross margin</em>')}
+      ${heading(6, 'BUSINESS MODEL', 'Subscription pricing<br><em>With 70% target gross margin</em>')}
       <div class="plan-strip" role="tablist" aria-label="Proposed plans">${Object.keys(plans).map(key =>
         button(`${plans[key].name}<small>${plans[key].price}</small>`, 'plan-' + key, state.plan === key ? 'selected' : '', tabAttrs(state.plan === key))
       ).join('')}</div>
@@ -347,7 +347,7 @@ function slideHTML(p) {
       ['HelloShield OVI · proposed', 'Third-party app + authorized execution', 'Persistent permission graph', 'Approved workflows only', 'Task-completion history']
     ];
     return `<section class="slide" id="competition">
-      ${heading(7, 'COMPETITION & MOAT', 'Screening is common<br><em>authorized execution is not</em>', button('Named providers ↗', 'providers', 'secondary'))}
+      ${heading(7, 'COMPETITION & MOAT', 'Screening is common<br><em>Authorized execution is not</em>', button('Named providers ↗', 'providers', 'secondary'))}
       <div class="comparison">
         <div class="comparison-head"><span>Alternative</span><span>Kind</span><span>Personal rules</span><span>Authorized execution</span><span>Outcome memory</span></div>
         ${rows.map((row, index) => `<div class="comparison-row ${index === 5 ? 'ours' : ''}">${row.map((cell, i) => `<span>${i === 0 ? `<b>${cell}</b>` : cell}</span>`).join('')}</div>`).join('')}
@@ -364,7 +364,7 @@ function slideHTML(p) {
 
   if (p === 7) {
     return `<section class="slide" id="validation">
-      ${heading(8, 'ROLLOUT STRATEGY', 'Win one brokerage workflow<br><em>with named go / no-go gates</em>')}
+      ${heading(8, 'ROLLOUT STRATEGY', 'Win one brokerage workflow<br><em>With named go / no-go gates</em>')}
       <div class="rollout-grid">
         <div class="launch-thesis">
           <span class="kicker">CHANNELS · PRE-PILOT HYPOTHESIS</span>
@@ -390,7 +390,7 @@ function slideHTML(p) {
 
   if (p === 8) {
     return `<section class="slide" id="team">
-      ${heading(9, 'TEAM & EXECUTION', 'Founder-built product<br><em>and the first four hires</em>')}
+      ${heading(9, 'TEAM & EXECUTION', 'Founder-built product<br><em>And the first four hires</em>')}
       <div class="team-layout">
         <div class="founder">
           <span class="founder-mark">SV</span>
@@ -420,7 +420,7 @@ function slideHTML(p) {
 
   if (p === 9) {
     return `<section class="slide" id="funds">
-      ${heading(10, 'THE $5M PLAN', '$5M over 18 months<br><em>to 5,000 paid and a Series A gate</em>')}
+      ${heading(10, 'THE $5M PLAN', '$5M over 18 months<br><em>To 5,000 paid and a Series A gate</em>')}
       <div class="funds-layout">
         <div class="fund-bars">
           ${[
@@ -448,7 +448,7 @@ function slideHTML(p) {
   return `<section class="slide closing" id="invitation">
     <div class="closing-copy">
       ${eyebrow(11, 'INVESTOR INVITATION')}
-      <h2>Fund the proof that<br><em>busy professionals will pay</em></h2>
+      <h2>Fund the proof that<br><em>Busy professionals will pay</em></h2>
       <p>HelloShield’s seed job is narrow: protect a real-estate professional’s attention and complete the next permitted step.</p>
       <div class="seed-objective"><span>THE SEED OBJECTIVE</span><b>Prove that the ICP will pay, return, and trust one inbound workflow — with zero unauthorized transactions.</b></div>
       <div class="contact">
