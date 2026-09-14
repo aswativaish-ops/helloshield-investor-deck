@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070a1d">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="HelloShield investor presentation: OVI, an AI phone secretary that screens calls and executes approved follow-up workflows.">
+  <title>HelloShield — Investor Presentation</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080b20'/%3E%3Cpath d='M18 49V15h13c10 0 16 5 16 14 0 10-7 15-18 15h-3v5z' fill='none' stroke='%23f6f5ff' stroke-width='5'/%3E%3Cpath d='M38 18c6 0 9 3 9 7 0 5-4 7-10 8-5 1-8 3-8 7 0 4 3 7 9 7' fill='none' stroke='%23ffb58d' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/house.jpg">
+  <link rel="preload" as="image" href="assets/pizza.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="deck.css">
+</head>
+<body>
+  <div class="pitch">
+    <header>
+      <a class="brand" href="#vision" aria-label="HelloShield first slide"><span>h<i>s</i></span><b>Hello<br>Shield</b></a>
+      <span class="strap">AI PHONE SECRETARY</span>
+      <nav>
+        <button id="sections" aria-expanded="false">Sections ↗</button>
+        <button id="print-deck" type="button">Print / PDF</button>
+        <button id="fullscreen" aria-label="Enter fullscreen">⛶</button>
+      </nav>
+    </header>
+    <main id="stage" aria-live="polite"></main>
+    <footer>
+      <div class="footer-main">
+        <span id="chapter"></span>
+        <div id="progress" aria-label="Slide navigation"></div>
+        <div class="pager"><button id="prev" aria-label="Previous slide">←</button><span id="counter"></span><button id="next" aria-label="Next slide">→</button></div>
+      </div>
+      <div class="legal"><b>CONFIDENTIAL · INVESTOR PREVIEW</b><span id="security-ref"></span><small>© 2026 Swati Vaish · HelloShield™ · Do not copy or distribute without permission</small></div>
+    </footer>
+  </div>
+  <div id="print-root" class="print-only" aria-hidden="true"></div>
+  <dialog id="detail"><button class="close" aria-label="Close details">×</button><div id="detail-body"></div></dialog>
+  <script src="deck.js"></script>
+</body>
+</html>
