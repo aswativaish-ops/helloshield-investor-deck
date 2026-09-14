@@ -172,8 +172,6 @@ function tabAttrs(selected) {
 function slideHTML(p) {
   if (p === 0) {
     return `<section class="slide hero" id="vision">
-      <img class="hero-image" src="assets/hero.jpg" alt="Glass orbital emblem for HelloShield">
-      <div class="hero-shade"></div>
       <div class="hero-copy">
         <h1>Meet “OVI”<br><em>your AI Personal Secretary</em></h1>
         <p class="hero-tag">An AI phone secretary that screens calls and executes approved follow-up workflows.</p>
@@ -491,6 +489,7 @@ function bindInputs() {
 }
 
 function syncChrome() {
+  document.querySelector('.pitch').classList.toggle('on-hero', state.page === 0);
   $('chapter').textContent = slides[state.page][1];
   $('counter').textContent = `${String(state.page + 1).padStart(2, '0')} / ${slides.length}`;
   $('prev').disabled = state.page === 0;
