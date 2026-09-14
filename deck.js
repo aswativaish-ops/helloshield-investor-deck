@@ -172,8 +172,10 @@ function tabAttrs(selected) {
 function slideHTML(p) {
   if (p === 0) {
     return `<section class="slide hero" id="vision">
+      <img class="hero-image" src="assets/hero.jpg" alt="">
+      <div class="hero-shade"></div>
       <div class="hero-copy">
-        <h1>Meet “OVI”<br><em>your AI Personal Secretary</em></h1>
+        <h1>Meet “OVI”<br><em>Your AI Personal Secretary</em></h1>
         <p class="hero-tag">An AI phone secretary that screens calls and executes approved follow-up workflows.</p>
         <p class="hero-rules">Screen the call. Apply your rules. Complete the next permitted step.</p>
         <div class="hero-actions">${button('See the product ↗', 'goto-2', 'primary')}${button('Meet the first customer', 'goto-3', 'secondary')}</div>
@@ -457,7 +459,7 @@ function slideHTML(p) {
       </div>
     </div>
     <div class="closing-action">
-      <span class="closing-mark">hs</span>
+      <span class="closing-mark">HelloShield</span>
       <h3>Request the deep dive</h3>
       <p>Opens your email client with a pre-filled request for a 30-minute walkthrough and data-room access.</p>
       ${linkBtn('Email a deep-dive request ↗', MAIL_DEEP, 'primary')}
