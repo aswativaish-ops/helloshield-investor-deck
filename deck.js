@@ -175,10 +175,6 @@ function slideHTML(p) {
       <img class="hero-image" src="assets/hero.jpg" alt="Glass orbital emblem for HelloShield">
       <div class="hero-shade"></div>
       <div class="hero-copy">
-        <div class="hero-brand">
-          <img class="hero-logo" src="assets/logo.jpg" alt="">
-          <div class="product-name">HelloShield</div>
-        </div>
         <h1>Meet “OVI”<br><em>your AI Personal Secretary</em></h1>
         <p class="hero-tag">An AI phone secretary that screens calls and executes approved follow-up workflows.</p>
         <p class="hero-rules">Screen the call. Apply your rules. Complete the next permitted step.</p>

@@ -208,22 +208,8 @@ footer {
   justify-content: center;
   align-items: flex-start;
 }
-.hero-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.hero-logo {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  object-fit: cover;
-  object-position: 50% 30%;
-}
-.hero-brand .product-name { margin: 0; font-size: 14px; }
-.product-name {
-  font: 600 12px "IBM Plex Mono", monospace;
-  letter-spacing: .16em;
-  color: var(--peach);
-  margin-bottom: 10px;
-}
 .hero h1 { font-size: clamp(42px, 6vw, 84px); line-height: .88; letter-spacing: -.05em; }
+.hero h1 em { display: block; white-space: nowrap; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.05; margin-top: 8px; }
 .hero-tag { font-size: 22px; color: var(--ink); margin-top: 16px; max-width: 34ch; }
 .hero-rules { font-size: 16px; margin-top: 10px; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
@@ -673,6 +659,7 @@ td:first-child { color: var(--ink); font-weight: 600; }
   .slide { padding: 12px 14px 16px; }
   .hero-copy { width: 100%; padding: 24px 18px; }
   .hero h1 { font-size: 42px; }
+  .hero h1 em { font-size: 22px; }
   .problem-grid, .product-grid, .customer-layout, .market-grid,
   .model-grid, .rollout-grid, .team-layout, .funds-layout, .closing {
     grid-template-columns: 1fr;
