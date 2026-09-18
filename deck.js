@@ -248,21 +248,21 @@ function slideHTML(p) {
       ${heading(4, 'TARGET AUDIENCE', 'One paying wedge first<br><em>Then adjacent waves</em>')}
       <div class="customer-layout">
         <div class="first-customer">
-          <span class="kicker">PRIMARY INITIAL ICP</span>
-          <h3>Busy real estate professionals and independent consultants</h3>
-          <p>High inbound volume, expensive missed calls, and a clear reason to pay for screening plus a permitted next step.</p>
+          <span class="kicker">PRIMARY INITIAL ICP · U.S. · IPHONE</span>
+          <h3>Residential real-estate agents in U.S. metros</h3>
+          <p>Independent and small-team buyer/listing agents who live on inbound calls. A missed showing or offer call costs a commission. Seed product is iOS-only.</p>
           <div class="job"><span>REPEATED JOB</span><b>Screen the call</b><i>Capture context</i><i>Take a permitted next step</i><i>Remind me</i></div>
         </div>
         <div class="customer-rings" aria-label="ICP wedge then expansion waves">
-          <div class="ring core"><span>WAVE 1 · ICP</span><b>Real estate + independent consultants</b><small>Brokerages, buyer agents, and client-coordination practices</small></div>
-          <div class="ring middle"><span>WAVE 2 · EXPANSION</span><b>Homebuyers and appointment-heavy households</b><small>Only after the ICP completes one live workflow</small></div>
-          <div class="ring outer"><span>WAVE 3 · LATER</span><b>Older adults and lower-pressure coordination</b><small>Not the seed beachhead</small></div>
+          <div class="ring core"><span>WAVE 1 · SEED</span><b>U.S. metro residential agents · iPhone</b><small>NAR / local board lists, independent brokerages, high inbound volume</small></div>
+          <div class="ring middle"><span>WAVE 2 · MONTHS 7–12</span><b>Android + Canada and India pilots</b><small>Same job, more devices and two new countries after the U.S. iOS workflow holds</small></div>
+          <div class="ring outer"><span>WAVE 3 · LATER</span><b>Homebuyers, consultants, older adults</b><small>Not the seed beachhead</small></div>
         </div>
       </div>
       <div class="why-pay">
         <b>PRE-PILOT HYPOTHESIS</b>
-        <span>Channel: LinkedIn outreach to brokerages and local association partnerships</span>
-        <span>Why they pay: missed calls cost commissions</span>
+        <span>Channel: LinkedIn and local realtor-board outreach to U.S. metro agents</span>
+        <span>Why they pay: missed inbound calls cost commissions</span>
         <span>Not yet measured conversion or retention</span>
       </div>
     </section>`;
@@ -364,24 +364,24 @@ function slideHTML(p) {
 
   if (p === 7) {
     return `<section class="slide" id="validation">
-      ${heading(8, 'ROLLOUT STRATEGY', 'Win one brokerage workflow<br><em>With named go / no-go gates</em>')}
+      ${heading(8, 'ROLLOUT STRATEGY', 'Win one U.S. iOS workflow<br><em>Then Android and two-country pilots</em>')}
       <div class="rollout-grid">
         <div class="launch-thesis">
           <span class="kicker">CHANNELS · PRE-PILOT HYPOTHESIS</span>
-          <h3>Reach the ICP where missed calls cost commissions</h3>
-          <p>Targeted LinkedIn outreach to brokerages, local realtor association partnerships, and later MLS / showing-app integrations. None of these channels is proven yet.</p>
-          <div class="stage-label"><b>Current stage</b><span>Interactive prototype · pre-pilot</span></div>
-          <small>No live revenue, paid retention, or physical-call proof is claimed.</small>
+          <h3>Start with U.S. metro agents, then widen reach</h3>
+          <p>Seed: LinkedIn and local realtor-board outreach to iPhone agents. Months 7–12: Android, additional U.S. regions, and Canada / India paid pilots so the same job can run on more devices and in more markets. None of these channels is proven yet.</p>
+          <div class="stage-label"><b>Current stage</b><span>Interactive prototype · pre-pilot · iOS</span></div>
+          <small>No live revenue, paid retention, or physical-call proof is claimed. Canada / India remain gated pilots, not a global launch.</small>
         </div>
         <div class="phases">
-          <div><i>01</i><span><b>Days 0–90 · Design partners</b><small>30 interviews · 10 observed tests · 5 paid partners · one live inbound appointment/inquiry workflow</small></span></div>
-          <div><i>02</i><span><b>Months 4–6 · Controlled pilot</b><small>250 paid users · ≥70% of standard appointment/inquiry calls completed without user escalation</small></span></div>
-          <div><i>03</i><span><b>Months 7–12 · Metro launch</b><small>2,000 paid · 4-week trial usage tracked separately from 12-month paid retention</small></span></div>
-          <div><i>04</i><span><b>Months 13–18 · Multi-market</b><small>5,000 paid · ≥50% 12-month paid retention path · ≥70% gross-margin path</small></span></div>
+          <div><i>01</i><span><b>Days 0–90 · U.S. design partners</b><small>30 interviews · 10 observed tests · 5 paid iPhone agents · one live inbound appointment/inquiry workflow</small></span></div>
+          <div><i>02</i><span><b>Months 4–6 · U.S. controlled pilot</b><small>250 paid iOS users in selected metros · ≥70% of standard appointment/inquiry calls completed without user escalation</small></span></div>
+          <div><i>03</i><span><b>Months 7–12 · Multi-region + Android + CA / IN</b><small>2,000 paid · Android launch · more U.S. regions · Canada and India paid pilots · 4-week trial vs 12-month paid retention tracked separately</small></span></div>
+          <div><i>04</i><span><b>Months 13–18 · Scale what passed the pilots</b><small>5,000 paid across proven regions and countries · ≥50% 12-month paid retention path · ≥70% gross-margin path</small></span></div>
         </div>
       </div>
       <div class="evidence-gates">
-        <b>90-DAY GO</b><span>5 paid design partners and ≥70% unescalated standard calls</span>
+        <b>90-DAY GO</b><span>5 paid U.S. iPhone agents and ≥70% unescalated standard calls</span>
         <b>NO-GO / PIVOT</b><span>&lt;3 paid partners, any unauthorized transaction, or a privacy-policy breach</span>
         <b>SAFETY</b><span>Zero unauthorized payments or credential sharing</span>
       </div>
@@ -414,7 +414,7 @@ function slideHTML(p) {
           ].map((item, index) => `<div><i>0${index + 1}</i><span><b>${item[0]}</b><small>${item[1]} · ${item[2]}</small></span></div>`).join('')}
         </div>
       </div>
-      <div class="execution-question"><span>THE EXECUTION QUESTION</span><b>Can this team complete one inbound appointment/inquiry workflow reliably enough that real-estate professionals pay and return?</b></div>
+      <div class="execution-question"><span>THE EXECUTION QUESTION</span><b>Can this team complete one inbound appointment/inquiry workflow for U.S. metro iPhone agents reliably enough that they pay and return?</b></div>
     </section>`;
   }
 
@@ -435,7 +435,7 @@ function slideHTML(p) {
         <div class="return-plan">
           <span class="kicker">18-MONTH OPERATING MODEL</span>
           <div><b>M6</b><strong>250 paid</strong><span>One production inbound workflow</span></div>
-          <div><b>M12</b><strong>2,000 paid</strong><span>Repeatable brokerage channel signal</span></div>
+          <div><b>M12</b><strong>2,000 paid</strong><span>Android + U.S. regions + Canada / India pilots</span></div>
           <div><b>M18</b><strong>5,000 paid · ≈$815K ARR</strong><span>Series A evidence: retention + 70% GM path</span></div>
           <div class="scale-cases"><span><b>Variable COGS</b> 28.5k user-months × $4.08 blended direct cost ≈ $116k, inside the $1.35M infra envelope</span></div>
           <small>$4.08 is blended paid COGS (40/40/20 at 70% GM), not the Plus sticker. Illustrative scale, not a forecast or guaranteed return.</small>
@@ -449,7 +449,7 @@ function slideHTML(p) {
     <div class="closing-copy">
       ${eyebrow(11, 'INVESTOR INVITATION')}
       <h2>Fund the proof that<br><em>Busy professionals will pay</em></h2>
-      <p>HelloShield’s seed job is narrow: protect a real-estate professional’s attention and complete the next permitted step.</p>
+      <p>HelloShield’s seed job is narrow: protect a U.S. metro real-estate agent’s attention on iPhone and complete the next permitted step.</p>
       <div class="seed-objective"><span>THE SEED OBJECTIVE</span><b>Prove that the ICP will pay, return, and trust one inbound workflow — with zero unauthorized transactions.</b></div>
       <div class="contact">
         <b>Swati Vaish</b>
