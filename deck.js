@@ -100,13 +100,13 @@ function slideHTML(p) {
 
   if (p === 1) {
     return `<section class="slide" id="problem">
-      ${heading(2, 'THE PROBLEM', 'Every call asks for attention<br><em>Only some deserve it</em>')}
+      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Start with what reaches you</em>')}
       <div class="problem-grid">
         <div class="problem-copy">
-          <p class="lead">A busy professional is in a meeting. An unknown number could be a new client, a medical office, or spam.</p>
-          <div class="choice"><span>ANSWER</span><strong>Interrupt the work in front of you</strong></div>
-          <div class="choice"><span>IGNORE</span><strong>Risk missing a useful call</strong></div>
-          <p class="takeaway">HelloShield aims to reduce unwanted interruptions while keeping useful human calls reachable.</p>
+          <p class="lead">Busy professionals face two jobs: deciding which incoming calls matter, and finding time to call people back.</p>
+          <div class="choice"><span>INBOUND</span><strong>Answer and lose focus—or ignore a useful caller</strong></div>
+          <div class="choice"><span>OUTBOUND</span><strong>Chase callbacks, wait on hold, repeat the context</strong></div>
+          <p class="takeaway">Inbound first: screen who is calling and why, while keeping useful human callers reachable. Later opportunity: user-approved callbacks using that context. Outbound is not in the current prototype.</p>
         </div>
         <div class="attention-calc">
           <span class="kicker">ILLUSTRATIVE INTERRUPTION LOAD</span>
@@ -204,10 +204,17 @@ function slideHTML(p) {
   }
   if (p === 6) {
     return `<section class="slide" id="competition">
-      ${heading(7,'COMPETITOR STUDY','A crowded market<br><em>Win on a focused, personal service</em>',button('Full study & sources ↗','competitor-study','secondary'))}
-      <div class="table-scroll"><table class="study-table"><thead><tr><th>Provider</th><th>Main offer</th><th>Reported scale</th><th>How HelloShield can compete</th></tr></thead><tbody>${competitors.map(c=>`<tr><td>${c.name}</td><td>${c.offer}</td><td><b>${c.scale}</b><small>${c.date}</small></td><td>${c.learn}</td></tr>`).join('')}</tbody></table></div>
-      <div class="future"><b>HelloShield’s proposed difference</b><span>A focused inbound-call service: personal rules, at most two screening questions, uncertain human callers still connect, and guided onboarding. No measured superiority over these products is claimed.</span></div>
-      <p class="bottom-note">Reported devices, active users, and protected network users are different measures; they are not paid-customer counts and cannot be added together. Their scale shows category interest and strong competition, not customers HelloShield can automatically acquire.</p>
+      ${heading(7,'INBOUND / OUTBOUND LANDSCAPE','Protect attention first<br><em>Then explore the full call journey</em>',button('Full study, scale & sources ↗','competitor-study','secondary'))}
+      <div class="table-scroll"><table class="study-table"><thead><tr><th>Provider / offering</th><th>Inbound · calls to you</th><th>Outbound · calls for you</th></tr></thead><tbody>
+        <tr><td>Apple / Google</td><td>Built-in call screening</td><td>Broader tools vary; screening is the offer compared here</td></tr>
+        <tr><td>Truecaller / Hiya</td><td>Caller ID and protection; Truecaller Assistant screens</td><td>Outbound task completion is not the reviewed core offer</td></tr>
+        <tr><td>Wajo</td><td>Broad workflows; personal screening not established in reviewed material</td><td>Calls and coordinates to complete tasks</td></tr>
+        <tr><td>Poka</td><td>Personal inbound screening not established in reviewed material</td><td>AI calls, reservations, and follow-ups</td></tr>
+        <tr class="hello-row"><td>HelloShield · prototype</td><td>Personal rules, two questions, useful human calls through</td><td>Not in current scope</td></tr>
+        <tr class="hello-row"><td>HelloShield · full-suite vision</td><td>Screen and retain approved call context</td><td>User-approved callbacks and follow-up calls · future concept</td></tr>
+      </tbody></table></div>
+      <div class="future"><b>Why inbound first?</b><span>Earn trust on one recurring job: reduce interruptions without losing useful callers. Then test demand for callbacks before building a broader suite.</span></div>
+      <p class="bottom-note">Opportunity to test: one workflow from “who called and why?” to “follow up with my approval.” This is not a proven gap across all competitors. Full-suite vision covers calls only; outbound is unbuilt and excluded from the forecast. Public audience figures and sources are in the full study.</p>
     </section>`;
   }
   if (p === 7) {
@@ -240,17 +247,17 @@ function slideHTML(p) {
 
   if (p === 9) {
     return `<section class="slide" id="funds">
-      ${heading(10,'FUNDING & INVESTOR RETURN','$1.5M now, staged funding later<br><em>Company profit and investor cash are different</em>',button('Ownership & return examples ↗','valuation','secondary'))}
+      ${heading(10,'FUNDING & INVESTOR RETURN','$1.5M now, staged funding later<br><em>Build value, then create options for investor cash</em>',button('Ownership & return examples ↗','valuation','secondary'))}
       <div class="funds-layout"><div class="return-plan"><span class="kicker">FIRST 18 MONTHS · $1.5M BUDGET</span>
         <div><b>01</b><strong>$990,000 fixed operations</strong><span>$55K/month: $45K people + $5K core infrastructure + $5K legal, insurance, and operations</span></div>
         <div><b>02</b><strong>$270,000 usage and customer growth</strong><span>Variable call costs, trials, referrals, and acquisition budget</span></div>
         <div><b>03</b><strong>$240,000 reserve</strong><span>Delays and unexpected expenses</span></div>
         <div class="scale-cases"><span><b>Later funding: plan another $1.5M</b> Start raising in months 18–24. Without new funding or lower spending, modeled cash runs out in month ${model.cashRunsOutMonth}. The five-year model needs about $1.39M extra to preserve the $240K reserve.</span></div>
-      </div><div class="return-plan"><span class="kicker">WHEN INVESTORS COULD RECEIVE MONEY</span>
-        <div><b>1–4</b><strong>Years 1–4: build and grow</strong><span>No investor repayments or dividends budgeted</span></div>
-        <div><b>5</b><strong>Year 5: target monthly operating profit</strong><span>Month ${model.firstProfitMonth}; cash is initially retained in the business</span></div>
-        <div><b>5–7</b><strong>Years 5–7: explore a sale</strong><span>Planning horizon for an acquisition or permitted investor share sale; no buyer or exit date secured</span></div>
-        <small>Dividends could follow sustained surplus cash and approvals; none is promised or modeled. An equity investment has no automatic repayment date, and investors may lose their investment.</small>
+      </div><div class="return-plan"><span class="kicker">MILESTONES TOWARD INVESTOR RETURNS</span>
+        <div><b>1–2</b><strong>Years 1–2: prove demand and build value</strong><span>Target repeat paid use and retention. A higher company value is a potential paper gain, not cash received.</span></div>
+        <div><b>18–24</b><strong>Months 18–24: review partial share-sale options</strong><span>A new buyer could purchase a small part of an early investor’s holding alongside a funding round, if demand, terms, and approvals allow.</span></div>
+        <div><b>Later</b><strong>Grow toward profit and a larger exit</strong><span>Base model: first monthly operating profit in month ${model.firstProfitMonth}. Explore an acquisition or later share sale as the business matures.</span></div>
+        <small>Early cash is an optional buyer-funded share sale, not company repayment. No buyer, payout, or date is secured. Dividends require surplus cash; none is in the base forecast.</small>
       </div></div>
       <p class="bottom-note">Opening proposal: $1.5M for 15% implies $10M after investment and $8.5M before investment. This is a negotiating proposal, not an independent valuation. Future funding may dilute that 15%. Both financing rounds remain to be secured.</p>
     </section>`;
@@ -405,6 +412,9 @@ function act(action) {
       ${competitors.map(c=>`<h3>${c.name}</h3><p><b>${c.offer}.</b> ${c.scale}. ${c.date}. ${c.learn}</p><p class="market-source"><a href="${c.source}" target="_blank" rel="noopener">Scale / company source ↗</a> · <a href="${c.feature}" target="_blank" rel="noopener">Product source ↗</a></p>`).join('')}
       <h3>What HelloShield can credibly say</h3><p>HelloShield is an inbound-call prototype with personal caller rules, a governed two-question flow, and a policy that uncertain human callers connect to the owner’s app. The proposed service adds guided setup and low-priced usage tiers. These are design choices to test, not evidence that competitors cannot do similar things.</p>
       <p>Truecaller Assistant already screens calls on iPhone and Android and is the closest functional competitor. Apple and Google are strong built-in alternatives. Wajo and Poka emphasize broader task execution and outbound actions. HelloShield is not claiming those features as a current advantage. The patent application is filed; technical scope is not disclosed and no granted exclusivity is claimed.</p>
+      <h3>Why start with inbound, and what would outbound add?</h3><p>Incoming calls create an immediate choice: interrupt work or risk missing someone important. HelloShield starts with screening and delivery because that is the prototype’s defined scope and can be tested with a focused pilot. Outbound work creates different problems: waiting, retries, passing on context, and confirming what the user has authorized. Current HelloShield does not perform that work.</p>
+      <p>The call-only full-suite vision would connect inbound context to a user-approved callback or follow-up. Example: identify an incoming service call, then let the owner approve a return call with the relevant context. This is a future concept, not an implemented capability, funded roadmap commitment, or forecast revenue source. Expansion requires demand evidence, permissions and policy review, reliable results, and separately measured costs.</p>
+      <p>The potential gap is continuity between screening and follow-up under the same personal rules. We have not established that this is absent from every competing platform. Wajo already advertises permissions and task coordination; Apple and Google have wider product portfolios. The table maps the reviewed offers, not every capability of each company. Test the continuity hypothesis with customers before claiming differentiation.</p>
       <h3>Turn research into a customer-acquisition test</h3><p>Interview 10 native-screening users, 10 Truecaller/Hiya users, and 10 people using no assistant. These are research segments within the initial professional pilot, not extra customers. Compare setup success, important-call misses, interruptions, retention, and willingness to pay. Publish comparisons only with measured evidence and participant permission. Use the strongest result in demos, referral invitations, and community partnerships.</p>
       <p>Apple’s 2.5B and Google’s 3B counts are devices across their ecosystems; screening-specific active users are not disclosed in the cited sources. Truecaller’s 500M+ total and its Q2 471M average excluding iOS are different measures. Hiya’s 550M is protected network reach. Wajo and Poka do not publish a verified active-user count in the reviewed official materials. Downloads, reviews, and ratings are not paying customers.</p>
       <p>Pricing context: Apple/Google screening is built in on supported devices. Truecaller offers paid Premium/Assistant with region-dependent pricing. Wajo lists free tiers and contact-sales Pro. Poka lists in-app subscriptions/credits. HelloShield therefore has to prove enough extra value for $4.99 or $8.99; being cheaper than an assumed competitor price is not the strategy.</p>`);return;
@@ -413,7 +423,9 @@ function act(action) {
     modal(`<div class="kicker">OPENING PROPOSAL · SUBJECT TO NEGOTIATION</div><h2>Where does $8.5 million come from?</h2>
       <table><tbody><tr><td>Investment requested</td><td>$1,500,000</td></tr><tr><td>Proposed investor ownership</td><td>15%</td></tr><tr><td>Value after investment</td><td>$1.5M ÷ 15% = $10M</td></tr><tr><td>Value before investment</td><td>$10M − $1.5M = $8.5M</td></tr><tr><td>Existing owners retain</td><td>85%, before other dilution</td></tr></tbody></table>
       <p><b>This calculation does not prove the company is worth $8.5M.</b> It starts with an amount to raise and ownership to offer. A prototype and founder experience support the conversation; paid demand, retention, call reliability, costs, and comparable deals must support an agreed price. Dallas registration alone does not establish value.</p>
-      <h3>How an investor could earn a return</h3><p>An investor may sell shares in an acquisition or another permitted share sale. Profit does not automatically mean investors get cash. No dividends or buybacks are budgeted; any later distribution needs sufficient cash, legal approval, and agreement under the investment terms. Target a possible liquidity discussion in years 5–7, after sustained growth and improving economics. This is a planning horizon, not a promised sale date. Example: if $30M were available to common shareholders after debt, transaction costs, and preferences, 15% would receive $4.5M before investor tax. If later funding dilutes that stake to 12%, the same proceeds give $3.6M, or 2.4× a $1.5M investment. Neither the sale value nor the 12% stake is a forecast.</p>
+      <h3>How an investor could earn a return</h3><p>An investor may sell shares in an acquisition or another permitted share sale. Profit does not automatically mean investors get cash. No dividends or buybacks are budgeted; any later distribution needs sufficient cash, legal approval, and agreement under the investment terms. At months 18–24, review whether a willing new investor could buy a limited portion of an existing investor’s shares alongside the next funding round. The purchase price goes to the selling investor, while the company must separately raise its operating capital. Transfers depend on investment terms, applicable restrictions, and approvals. This is an option to negotiate, not committed liquidity. Example: if $30M were available to common shareholders after debt, transaction costs, and preferences, 15% would receive $4.5M before investor tax. If later funding dilutes that stake to 12%, the same proceeds give $3.6M, or 2.4× a $1.5M investment. Neither the sale value nor the 12% stake is a forecast.</p>
+      <h3>Illustration: a small early share sale</h3><p>Assume an investor still owns 15% and a buyer agrees a $15M company equity value before a new round. Selling 10% of that holding (1.5% of the company) would bring $225,000 before fees and tax. The original cost of that portion was $150,000: the illustrative gain is $75,000. The investor retains 13.5% before any new-round dilution. Neither that price nor a buyer is secured; an early sale could also be at a loss.</p>
+      <h3>Why not promise repayments from year 2?</h3><p>The base model is still consuming cash then. A revenue-share or company buyback would increase the funding needed, not create profit. A different repayment product would need its own affordable cash-flow model and negotiated terms. Company profit, rising share value, and cash paid to an investor are three separate outcomes.</p>
       <h3>If the business fails</h3><p>Equity investors can lose all their investment; it is not a guaranteed loan repayment. Company funds and available assets cover obligations according to applicable law and contracts. Personal guarantees or other legal obligations can create personal exposure. Financing and wind-down terms need legal review.</p>
       <p class="market-source"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/private" target="_blank" rel="noopener">SEC guidance on private-investment risk ↗</a></p>
       <p class="note">This is a priced-equity illustration. A SAFE valuation cap would not guarantee these ownership percentages; conversion, later fundraising, and an employee option pool can change ownership.</p>`);

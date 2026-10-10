@@ -789,3 +789,10 @@ dialog p + p { margin-top: 12px; }
   .forecast-table th { font-size: 10px; letter-spacing: 0; }
   #market .market-row strong small { text-align: left; }
 }
+
+/* Highlight current product and future concept in the call landscape. */
+.hello-row { background: rgba(244, 185, 150, .08); }
+.hello-row td:first-child { color: var(--peach); }
+#competition .study-table th:first-child { width: 23%; }
+#competition .study-table th:nth-child(2) { width: 37%; }
+#competition .study-table th:nth-child(3) { width: 40%; }
