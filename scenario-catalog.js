@@ -180,5 +180,33 @@ const scenarioCatalog = [
     "example": "Earlier discussion proposed Instagram enquiries and eligible WhatsApp business calling for service professionals.",
     "status": "Exploratory; not adopted current scope",
     "evidence": "Define HelloShield AI protocol"
+  },
+  {
+    "category": "Small-business call operations",
+    "scenario": "Screen and route small-business enquiries",
+    "example": "Identify customer, supplier, and sales calls; apply business routing and opening-hour rules.",
+    "status": "Planned; business extension requires implementation and pilot validation",
+    "evidence": "Founder discussion, 10 October 2026; existing outbound foundation"
+  },
+  {
+    "category": "Small-business call operations",
+    "scenario": "Send hotel stay reminders and collect special requests",
+    "example": "Notify arriving guests of check-in and stay dates, then collect late-arrival or other requests.",
+    "status": "Planned; business extension requires implementation and pilot validation",
+    "evidence": "Founder discussion, 10 October 2026; existing outbound foundation"
+  },
+  {
+    "category": "Small-business call operations",
+    "scenario": "Send administrative appointment reminders",
+    "example": "Remind clinic, salon, or service customers of the approved date/time; collect confirmation or a callback request.",
+    "status": "Planned; business extension requires implementation and pilot validation",
+    "evidence": "Founder discussion, 10 October 2026; existing outbound foundation"
+  },
+  {
+    "category": "Small-business call operations",
+    "scenario": "Run scheduled reminders with a shared reply inbox",
+    "example": "Use approved customer lists and schedules; show confirmed, needs attention, message received, and not reached.",
+    "status": "Planned; business extension requires implementation and pilot validation",
+    "evidence": "Founder discussion, 10 October 2026; existing outbound foundation"
   }
 ];

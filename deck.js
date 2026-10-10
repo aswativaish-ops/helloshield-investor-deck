@@ -106,7 +106,7 @@ function slideHTML(p) {
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <h1>Meet “OVI”<br><em>Your AI Call Assistant</em></h1>
-        <p class="hero-tag">One personal call assistant for incoming calls and authorized outbound requests.</p>
+        <p class="hero-tag">A call assistant for busy people and small businesses: incoming calls and authorized outbound requests.</p>
         <p class="hero-rules">Screen incoming calls. Make authorized calls. Bring back the outcome.</p>
         <div class="hero-actions">${button('See the product ↗', 'goto-2', 'primary')}${button('Meet the first customer', 'goto-3', 'secondary')}</div>
         <div class="founder-line"><b>Abhishek Kaushal</b><span>Founder & Product Lead</span></div>
@@ -116,13 +116,13 @@ function slideHTML(p) {
 
   if (p === 1) {
     return `<section class="slide" id="problem">
-      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>', '<a class="secondary" href="scenario-catalog.html" target="_blank" rel="noopener">All 26 scenarios & status ↗</a>')}
+      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>', '<a class="secondary" href="scenario-catalog.html" target="_blank" rel="noopener">All 30 scenarios & status ↗</a>')}
       <div class="problem-grid">
         <div class="problem-copy">
-          <p class="lead">Busy professionals face two jobs: deciding which incoming calls matter, and finding time to call people back.</p>
+          <p class="lead">Busy people and small-business teams face two jobs: handling useful incoming calls and finding time for reminders and follow-up.</p>
           <div class="choice"><span>INBOUND</span><strong>Answer and lose focus—or ignore a useful caller</strong></div>
-          <div class="choice"><span>OUTBOUND</span><strong>Chase callbacks, wait on hold, repeat the context</strong></div>
-          <p class="takeaway">HelloShield screens incoming calls and makes authorized appointment calls. Next: broader user-assigned tasks—for example, ordering pizza or arranging a service. Appointment calling needs live verification; standalone message delivery is a UI preview.</p>
+          <div class="choice"><span>OUTBOUND</span><strong>Chase callbacks, send reminders, collect replies</strong></div>
+          <p class="takeaway">HelloShield screens incoming calls and makes authorized appointment calls. Proposed business extension: hotel check-in reminders, appointment reminders, and customer replies. Broader user-assigned tasks could include ordering pizza. Appointment calling needs live verification; standalone messages remain a preview.</p>
         </div>
         <div class="attention-calc">
           <span class="kicker">ILLUSTRATIVE INTERRUPTION LOAD</span>
@@ -175,27 +175,27 @@ function slideHTML(p) {
 
   if (p === 3) {
     return `<section class="slide" id="customer">
-      ${heading(4, 'FIRST CUSTOMERS', 'Busy professionals<br><em>Who cannot ignore unknown calls</em>')}
+      ${heading(4, 'FIRST CUSTOMERS', 'Busy people and small businesses<br><em>One calling problem, two customer segments</em>',button('Business use cases ↗','business-cases','secondary'))}
       <div class="customer-layout">
         <div class="first-customer">
-          <span class="kicker">FIRST PILOT · DALLAS AREA · IPHONE</span>
-          <h3>People with useful calls mixed into the noise</h3>
-          <p>Consultants, small-business owners, and salaried professionals. Recruit people who regularly receive unfamiliar calls and feel the interruption problem.</p>
-          <div class="job"><span>WHY THEY MIGHT PAY</span><b>Fewer distractions</b><i>Useful calls reach them</i><i>Simple personal rules</i></div>
+          <span class="kicker">FIRST PILOT · DALLAS AREA</span>
+          <h3>Personal assistant + business call desk</h3>
+          <p>Individuals need useful calls to get through. Small businesses need fewer interruptions, fewer missed enquiries, and less manual follow-up.</p>
+          <div class="job"><span>WHY THEY MIGHT PAY</span><b>Save staff time</b><i>Keep useful customer calls reachable</i><i>Collect replies to approved reminders</i></div>
         </div>
         <div class="customer-rings">
-          <div class="ring core"><span>10 CONSULTANTS</span><b>New clients and project calls</b><small>Can screening help without losing opportunities?</small></div>
-          <div class="ring middle"><span>10 SMALL-BUSINESS OWNERS</span><b>Customers, suppliers, and interruptions</b><small>Real-estate agents can participate; they are one example.</small></div>
-          <div class="ring outer"><span>10 SALARIED PROFESSIONALS</span><b>Work focus and important personal calls</b><small>Test Personal at $4.99 and Plus at $8.99 per month.</small></div>
+          <div class="ring core"><span>20 INDIVIDUAL TESTERS</span><b>Consultants and busy professionals</b><small>Test personal screening and authorized appointment calls.</small></div>
+          <div class="ring middle"><span>10 SMALL-BUSINESS OWNERS</span><b>Salons, home services, and small hotels</b><small>Test demand for incoming-call handling and outbound reminders.</small></div>
+          <div class="ring outer"><span>5 BUSINESS DESIGN PARTNERS</span><b>Selected from those 10 owners</b><small>Design the reminder/reply workflow. Doctor’s offices are a later administrative pilot.</small></div>
         </div>
       </div>
-      <div class="why-pay"><b>30 FIRST TESTERS</b><span>Proposed recruitment, not existing customers</span><span>Choose the best audience using paid use and repeat use</span></div>
+      <div class="why-pay"><b>30 PROPOSED TESTERS</b><span>5 design partners are a subset, not extra customers</span><span>Business workflows and willingness to pay still need validation</span></div>
     </section>`;
   }
 
   if (p === 4) {
     return `<section class="slide" id="market">
-      ${heading(5,'MARKET SIZE','64.9 million potential users<br><em>A focused U.S. professional market</em>',button('Calculation & sources ↗','market-math','secondary'))}
+      ${heading(5,'MARKET SIZE','64.9 million potential users<br><em>Personal market modeled · business opportunity additional</em>',button('Calculation & sources ↗','market-math','secondary'))}
       <div class="market-grid"><div class="market-bars">
         <div class="market-row tam"><span><b>TAM · TOTAL POTENTIAL MARKET</b><small>64.9M U.S. professionals with smartphones × $74.28 yearly subscription spend</small></span><strong>$4.82B<small>/ year</small></strong></div>
         <div class="market-row sam"><span><b>SAM · INITIAL SERVICEABLE MARKET</b><small>16.2M estimated users: 50% iPhone × 50% supported carrier/setup fit</small></span><strong>$1.21B<small>/ year</small></strong></div>
@@ -207,15 +207,15 @@ function slideHTML(p) {
         <div><strong>$6.19</strong><span>average monthly price: 70% at $4.99 + 30% at $8.99</span></div>
         <p>$6.19 × 12 = $74.28 per year. These are market capacity estimates, not current sales or measured willingness to pay.</p>
       </div></div>
-      <p class="market-source"><a href="https://www.bls.gov/cps/cpsaat11b.htm" target="_blank" rel="noopener">BLS occupation count ↗</a> · <a href="https://www.pewresearch.org/internet/fact-sheet/mobile/" target="_blank" rel="noopener">Pew smartphone ownership ↗</a>. The 91% adult rate is a proxy for professionals. The two 50% filters and plan mix are explicit planning assumptions, not survey findings. Dollar market sizes assume full adoption.</p>
+      <p class="market-source"><a href="https://www.bls.gov/cps/cpsaat11b.htm" target="_blank" rel="noopener">BLS occupation count ↗</a> · <a href="https://www.pewresearch.org/internet/fact-sheet/mobile/" target="_blank" rel="noopener">Pew smartphone ownership ↗</a>. The 91% adult rate is a proxy for professionals. The two 50% filters and plan mix are explicit planning assumptions, not survey findings. Dollar market sizes assume full adoption. Business accounts are not added: they may overlap with individual owners and require separate sizing and pricing.</p>
     </section>`;
   }
   if (p === 5) {
     return `<section class="slide" id="business-model">
       ${heading(6,'TWO PAID PLANS','Personal $4.99 · Plus $8.99<br><em>More call capacity, more revenue</em>',button('Costs & profit forecast ↗','financials','secondary'))}
       <div class="pricing-grid">${Object.values(plans).map(plan=>`<div class="selected-plan"><span class="kicker">PROPOSED MONTHLY SUBSCRIPTION</span><h3>${plan.name}</h3><strong>$${plan.price.toFixed(2)}<small>/ month</small></strong><p>${plan.audience}</p><p><b>${plan.minutes} managed call minutes per month</b></p><p>Two-question screening, personal caller rules, and delivery to the app.</p><small>Estimated average service cost: $${plan.cost.toFixed(2)} per user, including platform fees.</small></div>`).join('')}</div>
-      <div class="why-pay"><b>30-DAY FREE TRIAL</b><span>10 managed minutes</span><span>Plus offers 3× the included minutes</span><span>Proposed allowances; billing and limits still to be built</span></div>
-      <div class="profit-callout"><strong>70% Personal + 30% Plus = $6.19 per paying user each month</strong><span>At 1,000 users: $6,190 monthly sales versus $4,990 if everyone chose Personal. That is $1,200 more revenue, with higher service costs.</span></div>
+      <div class="why-pay"><b>30-DAY FREE TRIAL</b><span>10 managed minutes</span><span>Plus offers 3× the included minutes</span><span>Personal plans · business package separate</span></div>
+      <div class="profit-callout"><strong>70% Personal + 30% Plus = $6.19 per paying user each month</strong><span>At 1,000 users: $6,190 monthly sales versus $4,990 if everyone chose Personal. That is $1,200 more revenue, with higher service costs. Proposed business model: a monthly account fee with included call usage and charges for extra usage; price to be validated.</span></div>
       <p class="bottom-note">Managed minutes include screening and connected call time. Warn before the allowance is used; require an upgrade or guided forwarding pause, with no surprise charges. The base forecast reaches first monthly operating profit in month ${model.firstProfitMonth} at ${number(model.firstProfitUsers)} paid users. These proposed prices and the forecast cover inbound usage only. Outbound packaging and costs remain to be modeled; billing is not launch-ready.</p>
     </section>`;
   }
@@ -228,7 +228,7 @@ function slideHTML(p) {
         <tr><td>Wajo</td><td>Broad workflows; personal screening not established in reviewed material</td><td>Calls and coordinates to complete tasks</td></tr>
         <tr><td>Poka</td><td>Personal inbound screening not established in reviewed material</td><td>AI calls, reservations, and follow-ups</td></tr>
         <tr class="hello-row"><td>HelloShield · implemented</td><td>Personal rules, two questions, useful human calls through</td><td>Ovi appointment requests and approved spoken request delivery; external proof pending</td></tr>
-        <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>User-assigned tasks—for example, ordering pizza or arranging a service · proposed</td></tr>
+        <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>Business reminders and customer replies; broader user-assigned tasks · proposed</td></tr>
       </tbody></table></div>
       <div class="future"><b>Why both directions?</b><span>Incoming calls compete for attention; outgoing requests take time. HelloShield combines screening with authorized appointment calls and outcome reporting.</span></div>
       <p class="bottom-note">Positioning to validate: personal rules, explicit authorization, and clear outcomes across both call directions. This is not a proven exclusive advantage. Outbound implementation does not mean live readiness. The current forecast models inbound plans only; outbound pricing and costs need a separate model.</p>
@@ -237,15 +237,15 @@ function slideHTML(p) {
   if (p === 7) {
     return `<section class="slide" id="validation">
       ${heading(8,'CUSTOMER GROWTH & PROFIT','1,000 paid users in year one<br><em>A five-year plan with measurable costs</em>',button('Acquisition plan ↗','growth-plan','secondary'))}
-      <div class="rollout-grid"><div class="launch-thesis"><span class="kicker">START IN DALLAS · SCALE U.S. IPHONE</span><h3>Reach, trial, pay, stay</h3>
-        <div class="free-funnel"><div><b>Months 1–2</b><span>30–50 free pilot users; no paid revenue assumed.</span></div><div><b>Year one</b><span>Founder demos and professional groups. 10 community partners × 40 qualified trials each month is a target, not signed distribution.</span></div><div><b>After paid retention is proven</b><span>Target 50% of new subscribers from partners, 30% referrals, and 20% measured paid campaigns.</span></div></div>
+      <div class="rollout-grid"><div class="launch-thesis"><span class="kicker">DALLAS PILOT · TWO CUSTOMER SEGMENTS</span><h3>Reach, trial, pay, stay</h3>
+        <div class="free-funnel"><div><b>Months 1–2</b><span>30 free testers: 20 individuals + 10 owners. Select 5 of those owners as business design partners; no paid revenue assumed.</span></div><div><b>Year one</b><span>Personal pilot via professional groups; business discovery via local owner networks and hotel/service introductions. 10 community partners × 40 qualified trials each month is a target, not signed distribution.</span></div><div><b>After paid retention is proven</b><span>Target 50% of new subscribers from partners, 30% referrals, and 20% measured paid campaigns.</span></div></div>
         <small>Model: 25% of trials pay, 2% of paid users cancel monthly, $20 per new subscriber including trial delivery and acquisition. None is measured yet.</small>
       </div><div class="economics"><span class="kicker">BASE SCENARIO · MONTHS FROM FUNDED LAUNCH PROGRAM</span>
         <table class="forecast-table"><thead><tr><th>Month</th><th>Paid users<br>at month end</th><th>Sales<br>in month</th><th>Operating<br>profit / loss</th></tr></thead><tbody>${[12,24,36,48,60].map(n=>{const r=model.months[n-1];return `<tr><td>${n}</td><td>${number(r.users)}</td><td>${money(r.revenue)}</td><td class="${r.profit>=0?'gain':'loss'}">${money(r.profit)}</td></tr>`}).join('')}</tbody></table>
         <div class="profit-callout"><strong>First monthly profit: month ${model.firstProfitMonth}</strong><span>${number(model.firstProfitUsers)} paying users; about ${money(model.months[model.firstProfitMonth-1].profit)} operating profit in that month.</span></div>
         <small>Includes service costs, acquisition, and $55K fixed monthly bills. Sales use average active users within each month. Profit is before corporate tax, financing, and noncash charges. Year 5 as a whole still makes a loss; prior losses are not recovered.</small>
       </div></div>
-      <p class="bottom-note">Growth targets rise to 5,000 paid users in year 2, 15,000 in year 3, 30,000 in year 4, and 50,000 in year 5. Stop expanding a channel if costs, retention, or call reliability miss the plan.</p>
+      <p class="bottom-note">Personal-plan targets: 5,000 paid users in year 2, 15,000 in year 3, 30,000 in year 4, and 50,000 in year 5. Business subscriptions, reminder usage, and additional build costs are excluded; validate them separately before adding to the forecast.</p>
     </section>`;
   }
   if (p === 8) {
@@ -283,7 +283,7 @@ function slideHTML(p) {
   return `<section class="slide closing" id="invitation">
     <div class="closing-copy">${eyebrow(11,'INVESTOR INVITATION')}
       <h2>Help launch HelloShield<br><em>And prove people will pay</em></h2>
-      <p>A personal assistant for inbound screening and authorized outbound appointment calls. Implemented prototype; launch finishing and live verification remain.</p>
+      <p>A call assistant for busy people and small businesses. Inbound screening and bounded outbound appointment calling are implemented; business reminder workflows are a proposed expansion.</p>
       <div class="seed-objective"><span>SEEKING $1.5 MILLION</span><b>18-month plan: finish the app, launch a controlled pilot, and prove repeat paid use.</b></div>
       <div class="contact"><b>Abhishek Kaushal</b><span>Founder & Product Lead · HelloShield</span><span>19+ years in technology, cloud strategy, and engineering management</span><span>Worked at Deloitte · More than 3 years at T-Mobile in telecom</span><span>Patent application filed · Technical scope not disclosed</span><span>Dallas, Texas · Company registration planned</span><a href="${PROFILE}" target="_blank" rel="noopener">Abhishek’s LinkedIn profile ↗</a></div>
     </div>
@@ -398,10 +398,18 @@ function act(action) {
     render();
     return;
   }
+  if (action === 'business-cases') {
+    modal(`<div class="kicker">PROPOSED BUSINESS OFFER · VALIDATE WITH DESIGN PARTNERS</div><h2>A call assistant for small businesses</h2>
+      <h3>Incoming: understand the call before interrupting staff</h3><p>Ask who is calling and why. Help useful customer enquiries reach the right person while applying approved caller rules. Shared staff routing, opening hours, and unattended-call handling require a business-specific implementation.</p>
+      <h3>Outgoing: send a reminder and collect a reply</h3><table><thead><tr><th>Business</th><th>Example reminder</th><th>Reply for staff</th></tr></thead><tbody><tr><td>Small hotel</td><td>Your stay starts tomorrow; check-in is from 4 PM. Do you have any special requests?</td><td>Late arrival or other request</td></tr><tr><td>Doctor’s office</td><td>Your appointment is tomorrow at 10 AM. Confirm or request a callback.</td><td>Confirmation or message for reception</td></tr><tr><td>Salon / service business</td><td>Your appointment or service visit is tomorrow at 2 PM. Does that still work?</td><td>Confirm, decline, or request another time</td></tr></tbody></table>
+      <h3>The business sees the outcome</h3><p>Proposed staff view: confirmed, needs attention, message received, or not reached. A spoken response and a recorded voice message are different capture options; recording needs approved notice and consent. Medical use is administrative: unclear or potentially urgent requests must reach staff.</p>
+      <h3>What exists and what must be built</h3><p>The bounded outbound appointment flow is implemented with external proof pending. Guest/customer lists, scheduled batches, business permissions, staff routing, response capture, and a shared results screen are proposed business features. A call accepted by a provider is not proof of delivery or customer confirmation.</p>
+      <h3>A separate business revenue stream</h3><p>Proposed commercial model: monthly business account fee with included call usage, plus charges for additional usage. Measure reminder cost, staff time saved, reply accuracy, and willingness to pay with 5 design partners before setting a price. No business revenue, business market total, or additional development cost is included in the current personal-plan forecast.</p>`);return;
+  }
   if (action === 'market-math') {
     modal(`<div class="kicker">MARKET ESTIMATE · SOURCES AND ASSUMPTIONS</div><h2>Every market number, calculated</h2><table><tbody>
       <tr><td>Professional worker base</td><td>71,338,000 · BLS 2025 management, professional, and related occupations</td></tr><tr><td>TAM users</td><td>71,338,000 × 91% smartphone proxy = ${number(model.tamUsers)}</td></tr><tr><td>SAM users</td><td>${number(model.tamUsers)} × 50% iPhone × 50% carrier/setup fit = ${number(model.samUsers)}</td></tr><tr><td>Monthly average price</td><td>70% × $4.99 + 30% × $8.99 = $6.19</td></tr><tr><td>TAM annual capacity</td><td>${number(model.tamUsers)} × $6.19 × 12 = ${money(model.tamValue)}</td></tr><tr><td>SAM annual capacity</td><td>${number(model.samUsers)} × $6.19 × 12 = ${money(model.samValue)}</td></tr><tr><td>Year-3 SOM</td><td>15,000 users × $6.19 × 12 = $1,114,200 yearly run rate</td></tr></tbody></table>
-      <p>The occupational population and smartphone ownership proxy come from research. The 50% iPhone share, 50% service-fit filter, 70/30 plan mix, and customer targets are planning assumptions. Service fit covers forwarding compatibility, supported setup, and relevant calling needs; it is not a measured conversion rate. TAM includes future Android expansion. SAM models nationwide U.S. iPhone availability after the Dallas pilot.</p>
+      <p>The occupational population and smartphone ownership proxy come from research. The 50% iPhone share, 50% service-fit filter, 70/30 plan mix, and customer targets are planning assumptions. Service fit covers forwarding compatibility, supported setup, and relevant calling needs; it is not a measured conversion rate. TAM includes future Android expansion. SAM models nationwide U.S. iPhone availability after the Dallas pilot. These figures describe the personal product only. The small-business opportunity is additional positioning, not an added numeric market claim; count business accounts separately and avoid double-counting owners.</p>
       <p>These are potential spending ceilings at full adoption, not a forecast that everyone needs or will buy the app. Smartphone ownership among professionals may differ from the adult-wide survey. BLS includes workers aged 16+, while Pew surveys adults; the multiplication is a proxy, not a matched survey.</p>
       <p class="market-source"><a href="https://www.bls.gov/cps/cpsaat11b.htm" target="_blank" rel="noopener">BLS 2025 Table 11b ↗</a> · <a href="https://www.pewresearch.org/internet/fact-sheet/mobile/" target="_blank" rel="noopener">Pew 2025 mobile fact sheet ↗</a></p>`);return;
   }
@@ -417,7 +425,7 @@ function act(action) {
       <p>Month 60 profit does not recover past losses. Year 5 overall is still loss-making. The initial $1.5M plus a proposed later $1.5M round cover the modeled cash trough with a reserve; that later financing is not secured. Revenue is gross subscription sales before platform costs, with sales taxes excluded. Cash is simplified as collected and paid within the month; tax, debt, working-capital delays, and noncash accounting charges require a full finance model.</p>`);return;
   }
   if (action === 'growth-plan') {
-    modal(`<div class="kicker">ACQUISITION TARGETS · NOT EXISTING PARTNERSHIPS</div><h2>How the customer base grows</h2><p>Recruit 30–50 testers through founder introductions in Dallas. Observe setup and call outcomes. Then approach professional communities, coworking groups, consultants, and small-business networks with a live demo and a 30-day trial.</p>
+    modal(`<div class="kicker">ACQUISITION TARGETS · NOT EXISTING PARTNERSHIPS</div><h2>How the customer base grows</h2><p>Recruit 30 testers through founder introductions in Dallas: 20 individuals and 10 small-business owners. Choose 5 of the owners as design partners for proposed business workflows. These are recruitment targets, not signed customers. Observe setup and call outcomes. Then approach professional communities, coworking groups, consultants, and small-business networks with a live demo and a 30-day trial.</p>
       <table><thead><tr><th>Month</th><th>Qualified trials needed</th><th>New paid users</th><th>Cancellations</th><th>Paid users at end</th></tr></thead><tbody>${[12,24,36,48,60].map(n=>{const r=model.months[n-1];return `<tr><td>${n}</td><td>${number(r.trials)}</td><td>${number(r.additions)}</td><td>${number(r.cancellations)}</td><td>${number(r.users)}</td></tr>`}).join('')}</tbody></table>
       <p>Formula: previous paid users − 2% cancellations + new subscribers = ending users. One in four qualified trials becomes paid. A 30-day trial means recruiting each cohort about one month before its paid additions. First two months have no subscription sales. Counts above are rounded.</p>
       <h3>Channels, not an assumed share of competitors</h3><p>Target 50% of additions through communities/partners, 30% from referrals, and 20% from paid campaigns. At month 12 this needs about 334 partner trials, 200 referral trials, and 134 paid-channel trials. Ten active partners bringing 40 trials each could cover that partner target. These are recruitment targets, not signed agreements.</p>
@@ -432,7 +440,7 @@ function act(action) {
       <h3>Future category: user-assigned tasks</h3><p>Ovi could eventually carry out approved user-assigned tasks. Examples include ordering pizza for delivery, requesting a reservation, or arranging a service. For the pizza example, this needs order and spending approval, merchant acceptance, payment safeguards, and fulfillment status. The merchant delivers the pizza. This remains a proposed task category and is outside the current implementation and financial forecast.</p>
       <h3>How the combined offering could stand out</h3><p>Test whether customers value one personal assistant for screening incoming calls and making authorized outbound requests, with explicit decisions and clear results. Truecaller already has screening; Wajo and Poka already support outbound actions. Combining directions is positioning to validate, not proof of exclusivity or superiority. The patent application is filed; technical scope is not disclosed and no granted exclusivity is claimed.</p>
       <p>The $4.99 / $8.99 forecast currently covers inbound call usage. Outbound allowances, pricing, and provider costs must be modeled before selling a combined paid package; no outbound or pizza revenue has been added to the projections.</p>
-      <h3>Turn research into a customer-acquisition test</h3><p>Interview 10 native-screening users, 10 Truecaller/Hiya users, and 10 people using no assistant. These are research segments within the initial professional pilot, not extra customers. Compare setup success, important-call misses, interruptions, retention, and willingness to pay. Publish comparisons only with measured evidence and participant permission. Use the strongest result in demos, referral invitations, and community partnerships.</p>
+      <h3>Turn research into a customer-acquisition test</h3><p>Interview 10 native-screening users, 10 Truecaller/Hiya users, and 10 people using no assistant. These are research segments across the 30-person pilot, not extra customers. Compare setup success, important-call misses, interruptions, retention, and willingness to pay. Publish comparisons only with measured evidence and participant permission. Use the strongest result in demos, referral invitations, and community partnerships.</p>
       <p>Apple’s 2.5B and Google’s 3B counts are devices across their ecosystems; screening-specific active users are not disclosed in the cited sources. Truecaller’s 500M+ total and its Q2 471M average excluding iOS are different measures. Hiya’s 550M is protected network reach. Wajo and Poka do not publish a verified active-user count in the reviewed official materials. Downloads, reviews, and ratings are not paying customers.</p>
       <p>Pricing context: Apple/Google screening is built in on supported devices. Truecaller offers paid Premium/Assistant with region-dependent pricing. Wajo lists free tiers and contact-sales Pro. Poka lists in-app subscriptions/credits. HelloShield therefore has to prove enough extra value for $4.99 or $8.99; being cheaper than an assumed competitor price is not the strategy.</p>`);return;
   }
