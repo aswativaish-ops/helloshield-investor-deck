@@ -169,7 +169,7 @@ function slideHTML(p) {
           <div class="demo-actions">${button('▶ Run this scenario', 'run-demo', 'primary')}</div>
         </div>
       </div>
-      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound and bounded outbound appointment/message flows are implemented; external proof and release finishing remain. Broader user-assigned tasks are proposed; pizza ordering is one example. Voicemail audio is not production-ready.</p>
+      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound screening and outbound appointment requests are implemented; external proof remains. Standalone message delivery is a UI preview. Broader user-assigned tasks are proposed; pizza ordering is one example. Voicemail audio is not production-ready.</p>
     </section>`;
   }
 
