@@ -6,151 +6,55 @@ const slides = [
   ['customer', 'The first customer'],
   ['market', 'Market opportunity'],
   ['business-model', 'Business model'],
-  ['competition', 'Competition & moat'],
+  ['competition', 'Why HelloShield?'],
   ['validation', 'Rollout strategy'],
   ['team', 'Team & execution'],
-  ['funds', 'The $5M plan'],
+  ['funds', 'The $1.5M plan'],
   ['invitation', 'Investor invitation']
 ];
 
-const MAIL = 'a.swativaish@gmail.com';
-const MAIL_DEEP = `mailto:${MAIL}?subject=${encodeURIComponent('HelloShield investor deep dive')}&body=${encodeURIComponent('Hi Swati,\n\nI would like a 30-minute product deep dive and access to the HelloShield data room.\n\nName:\nFirm:\nPreferred times:\n\n')}`;
-const MAIL_ROOM = `mailto:${MAIL}?subject=${encodeURIComponent('HelloShield data room request')}&body=${encodeURIComponent('Hi Swati,\n\nPlease send data-room access for HelloShield (product demo, cost model, and validation plan).\n\n')}`;
+const PROFILE = 'https://www.linkedin.com/in/kaushalabhishek/';
 
 const state = {
   page: 0,
   minutes: 4,
   demoStep: 0,
   demoDone: false,
-  plan: 'plus',
+  plan: 'basic',
   scenario: 'dental'
 };
 
 let demoTimer;
 
 const plans = {
-  free: {
-    name: 'Free', price: '$0', kind: 'trial', period: '/ 1 month only',
-    value: 'One-month inbound screening trial', detail: 'Then choose Basic, Plus, or Pro to continue',
-    allow: '20 inbound minutes · 1 saved rule · no outbound tasks · expires after 30 days',
-    overage: 'Hard cap; pick a paid plan to continue',
-    arpu: '$0', cost: '≤ $1.20 subsidy', profit: '—', margin: 'n/a',
-    cac: 'Not a paid CAC', payback: 'n/a', ratio: 'n/a',
-    formula: 'Free is a 30-day trial only. It is not a standing free tier. After the month, the user selects Basic, Plus, or Pro.'
-  },
-  basic: {
-    name: 'Basic', price: '$8.99', kind: 'paid', period: '/ month',
-    value: 'Inbound screening', detail: 'Saved personal rules',
-    allow: '120 inbound minutes / month',
-    overage: '$0.08 / extra inbound minute (proposed)',
-    arpu: '$8.99', cost: '$2.70', profit: '$6.29', margin: '70%',
-    cac: '$36', payback: '5.7 mo', ratio: '5.8×',
-    formula: 'LTV $209.67 = $6.29 GP ÷ 3% churn. $209.67 ÷ $36 CAC = 5.8×. Payback $36 ÷ $6.29 = 5.7 months.'
-  },
-  plus: {
-    name: 'Plus', price: '$14.99', kind: 'paid', period: '/ month',
-    value: 'Inbound + approved outbound tasks', detail: 'Calendar coordination (roadmap)',
-    allow: '180 inbound minutes + 20 outbound tasks / month',
-    overage: '$0.08 / min inbound · $0.25 / extra outbound task (proposed)',
-    arpu: '$14.99', cost: '$4.50', profit: '$10.49', margin: '70%',
-    cac: '$55', payback: '5.2 mo', ratio: '6.4×',
-    formula: 'Plus sticker is $14.99. Blended paid ARPU of $13.59 is the 40/40/20 mix, not the Plus price. LTV $349.67 = $10.49 ÷ 3%. $349.67 ÷ $55 = 6.4×. Payback 5.2 months.'
-  },
-  pro: {
-    name: 'Pro', price: '$19.99', kind: 'paid', period: '/ month',
-    value: 'Higher recurring-task capacity', detail: 'Same workflow, more allowance',
-    allow: '300 inbound minutes + 50 outbound tasks / month',
-    overage: '$0.08 / min inbound · $0.25 / extra outbound task (proposed)',
-    arpu: '$19.99', cost: '$6.00', profit: '$13.99', margin: '70%',
-    cac: '$70', payback: '5.0 mo', ratio: '6.7×',
-    formula: 'LTV $466.33 = $13.99 GP ÷ 3% churn. $466.33 ÷ $70 CAC = 6.7×. Payback $70 ÷ $13.99 = 5.0 months.'
-  }
+  free: { name: 'Try it', price: '$0', period: '/ first 30 days' },
+  basic: { name: 'Personal', price: '$4.99', period: '/ month · proposed' }
 };
 
 const demos = {
   dental: {
-    photo: '', initials: 'BD', kind: 'INBOUND CALL',
-    caller: 'BrightSmile Dental', desk: 'Appointment desk',
-    context: 'In a showing until 3:45 PM',
-    permissions: ['✓ Scheduling allowed', '× No payment authority'],
-    steps: [
-      ['Identify intent', 'Existing appointment change'],
-      ['Apply your rules', 'Offer a callback after 3:45 PM'],
-      ['Complete the next step', 'Write the callback and reminder']
-    ],
-    speech: [
-      '“Is this about an existing BrightSmile appointment?”',
-      '“I can arrange a callback after 3:45. Does 4 PM work?”',
-      '“Confirmed. I’ll add the callback and remind you.”'
-    ],
-    artifact: {
-      kicker: 'POST-CALL ARTIFACT',
-      title: 'Calendar hold · 4:00 PM callback',
-      body: 'BrightSmile Dental · appointment change · no payment taken · reminder queued after 3:45 PM.'
-    }
+    photo: '', initials: 'BD', kind: 'INBOUND CALL', caller: 'BrightSmile Dental',
+    desk: 'Appointment desk', context: 'An unknown number calls during your workday',
+    permissions: ['✓ Screen before ringing', '✓ You choose whether to answer'],
+    steps: [['Ask who', 'Identify the caller'], ['Ask why', 'Understand the purpose'], ['Connect', 'Ring your HelloShield app']],
+    speech: ['“Who is calling, please?”', '“What is the reason for your call?”', 'A human calling about your appointment is connected to your app.'],
+    artifact: { kicker: 'ILLUSTRATIVE OUTCOME', title: 'Useful call reaches you', body: 'Caller identity is a claim, not verified proof. No calendar booking or payment is performed.' }
   },
-  home: {
-    photo: 'house-phone', initials: 'RH', kind: 'INBOUND CALL',
-    caller: 'River Homes', desk: 'Buyer desk',
-    context: 'Up to $1M · chosen area · no ranch homes',
-    permissions: ['✓ Matching listings allowed', '× No ranch homes'],
-    steps: [
-      ['Identify the offer', 'Home in your saved range'],
-      ['Apply your rules', 'Budget, area, and home style'],
-      ['Complete the next step', 'Notify you; offer a viewing']
-    ],
-    speech: [
-      '“Is this a listing in the saved search area?”',
-      '“Two-story, $990K, within budget. Not a ranch home.”',
-      '“A match. I’ll notify you and offer to arrange a viewing.”'
-    ],
-    artifact: {
-      kicker: 'POST-CALL ARTIFACT',
-      title: 'Listing summary saved',
-      body: '$990K · two-story · in-area · viewing offer held for you. Ranch listings remain excluded.'
-    }
+  client: {
+    photo: '', initials: 'NC', kind: 'INBOUND CALL', caller: 'New client',
+    desk: 'Project inquiry', context: 'You cannot ignore every unfamiliar number',
+    permissions: ['✓ Ask identity and purpose', '✓ Keep useful human calls'],
+    steps: [['Ask who', 'Identify the caller'], ['Ask why', 'Understand the inquiry'], ['Connect', 'Ring your HelloShield app']],
+    speech: ['“Who is calling, please?”', '“What is the reason for your call?”', 'A potential client with a project question is connected to your app.'],
+    artifact: { kicker: 'ILLUSTRATIVE OUTCOME', title: 'A new opportunity gets through', body: 'The caller does not need to be in your contacts. No promise of perfect spam detection.' }
   },
-  pizza: {
-    photo: 'pizza-phone', initials: 'SP', kind: 'OUTBOUND TASK',
-    caller: 'Sunny Pizza', desk: 'Order desk · user-initiated',
-    context: 'Usual Friday order · delivery allowed',
-    permissions: ['✓ Repeat order allowed', '× No substitutions over $5'],
-    steps: [
-      ['Confirm the routine', 'Saved Friday order, not an inbound sales call'],
-      ['Apply your rules', 'Same items, budget, and address'],
-      ['Execute outbound', 'Place the order and return the ETA']
-    ],
-    speech: [
-      '“Placing the saved Friday order with Sunny Pizza now.”',
-      '“Same items, under the saved budget, to the approved address.”',
-      '“Order placed. Delivery is on the way; ETA is 30 minutes.”'
-    ],
-    artifact: {
-      kicker: 'POST-CALL ARTIFACT',
-      title: 'Order confirmation',
-      body: 'Sunny Pizza · usual items · no substitution · ETA 30 min · receipt stored in activity.'
-    }
-  },
-  ambiguous: {
-    photo: '', initials: 'UN', kind: 'AMBIGUOUS CALL',
-    caller: 'Unknown caller', desk: 'Payment / credential request',
-    context: 'No payment or credential authority',
-    permissions: ['× No payment authority', '× No credential sharing'],
-    steps: [
-      ['Detect the ask', 'Card, code, or password requested'],
-      ['Refuse execution', 'OVI cannot send money or secrets'],
-      ['Escalate to you', 'Hold the call and log the request']
-    ],
-    speech: [
-      '“They’re asking for a card number and a one-time code.”',
-      '“I can’t complete payments or share credentials.”',
-      '“Held for you. Nothing was sent. Verification log saved.”'
-    ],
-    artifact: {
-      kicker: 'SAFETY ARTIFACT',
-      title: 'Escalated · no transaction',
-      body: 'Caller asked for payment credentials. Autonomous execution blocked. You decide whether to take the call.'
-    }
+  uncertain: {
+    photo: '', initials: '?', kind: 'INBOUND CALL', caller: 'Unclear caller',
+    desk: 'Incomplete answers', context: 'The caller gives too little information',
+    permissions: ['✓ At most two screening questions', '× Uncertainty is not a reason to reject'],
+    steps: [['Ask who', 'The answer is unclear'], ['Ask why', 'The purpose is incomplete'], ['Connect', 'Let you decide']],
+    speech: ['“Who is calling, please?”', '“What is the reason for your call?”', 'An uncertain human caller is connected to your app, not automatically rejected.'],
+    artifact: { kicker: 'SAFETY RULE', title: 'You keep the final choice', body: 'Explicit blocked-caller rules still apply. Screening uncertainty alone does not block a human call.' }
   }
 };
 
@@ -163,7 +67,6 @@ const linkBtn = (label, href, className = '') =>
   `<a class="${className}" href="${href}">${label}</a>`;
 
 const exposedHours = () => Math.round(state.minutes * 5 * 48 / 60);
-const netHours = () => Math.round(exposedHours() * 0.75);
 
 function tabAttrs(selected) {
   return `role="tab" aria-selected="${selected}" aria-pressed="${selected}"`;
@@ -175,11 +78,11 @@ function slideHTML(p) {
       <img class="hero-image" src="assets/hero.jpg" alt="">
       <div class="hero-shade"></div>
       <div class="hero-copy">
-        <h1>Meet “OVI”<br><em>Your AI Personal Secretary</em></h1>
-        <p class="hero-tag">An AI phone secretary that screens calls and executes approved follow-up workflows.</p>
-        <p class="hero-rules">Screen the call. Apply your rules. Complete the next permitted step.</p>
+        <h1>Meet “OVI”<br><em>Your AI Call Assistant</em></h1>
+        <p class="hero-tag">A personal call-screening app for busy people who cannot miss useful calls.</p>
+        <p class="hero-rules">Ask who. Ask why. Let useful calls reach you.</p>
         <div class="hero-actions">${button('See the product ↗', 'goto-2', 'primary')}${button('Meet the first customer', 'goto-3', 'secondary')}</div>
-        <div class="founder-line"><b>Swati Vaish</b><span>Founder & Product Lead</span></div>
+        <div class="founder-line"><b>Abhishek Kaushal</b><span>Founder & Product Lead</span></div>
       </div>
     </section>`;
   }
@@ -189,10 +92,10 @@ function slideHTML(p) {
       ${heading(2, 'THE PROBLEM', 'Every call asks for attention<br><em>Only some deserve it</em>')}
       <div class="problem-grid">
         <div class="problem-copy">
-          <p class="lead">A realtor on a showing gets a spam sales call while an urgent client offer is still open.</p>
-          <div class="choice"><span>ANSWER</span><strong>Break the client conversation</strong></div>
-          <div class="choice"><span>IGNORE</span><strong>Risk missing the next qualified buyer</strong></div>
-          <p class="takeaway">High-friction example: unknown spam interrupts live deal coordination. The job is not “answer every call.” It is keep the expensive calls and park the rest.</p>
+          <p class="lead">A busy professional is in a meeting. An unknown number could be a new client, a medical office, or spam.</p>
+          <div class="choice"><span>ANSWER</span><strong>Interrupt the work in front of you</strong></div>
+          <div class="choice"><span>IGNORE</span><strong>Risk missing a useful call</strong></div>
+          <p class="takeaway">HelloShield aims to reduce unwanted interruptions while keeping useful human calls reachable.</p>
         </div>
         <div class="attention-calc">
           <span class="kicker">ILLUSTRATIVE INTERRUPTION LOAD</span>
@@ -200,7 +103,7 @@ function slideHTML(p) {
           <p>Annual time exposed to call interruptions</p>
           <label for="minutes">Minutes exposed each weekday <output id="minutes-label">${state.minutes}</output></label>
           <input id="minutes" type="range" min="1" max="12" value="${state.minutes}" aria-valuemin="1" aria-valuemax="12" aria-valuenow="${state.minutes}">
-          <small id="time-formula">${state.minutes} min × 5 days × 48 weeks = ${exposedHours()} hours exposed. Net recoverable at 75% efficiency after setup overhead: ${netHours()} hours. Not a measured customer average.</small>
+          <small id="time-formula">${state.minutes} min × 5 days × 48 weeks = ${exposedHours()} hours exposed. Illustration only; time saved has not been measured.</small>
         </div>
       </div>
     </section>`;
@@ -210,12 +113,11 @@ function slideHTML(p) {
     const demo = demos[state.scenario] || demos.dental;
     const tabs = [
       ['dental', 'Inbound appointment'],
-      ['home', 'Inbound home inquiry'],
-      ['pizza', 'Outbound pizza order'],
-      ['ambiguous', 'Ambiguous payment']
+      ['client', 'New client'],
+      ['uncertain', 'Unclear caller']
     ];
     return `<section class="slide" id="product">
-      ${heading(3, 'THE PRODUCT', 'One secretary for useful calls<br><em>And permitted follow-through</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
+      ${heading(3, 'THE PRODUCT', 'Two questions before the ring<br><em>You keep the final choice</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
       <div class="scenario-tabs" role="tablist" aria-label="Product scenarios">${tabs.map(([id, label]) =>
         button(label, 'scenario-' + id, state.scenario === id ? 'selected' : '', tabAttrs(state.scenario === id))
       ).join('')}</div>
@@ -223,7 +125,7 @@ function slideHTML(p) {
         <div class="phone ${demo.photo}">
           <div class="phone-top"><span>11:42</span><b>HELLOSHIELD ON</b></div>
           <div class="caller"><span class="avatar">${demo.initials}</span><div><small>${demo.kind}</small><strong>${demo.caller}</strong><em>${demo.desk}</em></div></div>
-          <div class="context"><span>Approved context</span><b>${demo.context}</b></div>
+          <div class="context"><span>Call context</span><b>${demo.context}</b></div>
           <div class="permissions"><span>${demo.permissions[0]}</span><span>${demo.permissions[1]}</span></div>
         </div>
         <div class="demo">
@@ -239,233 +141,142 @@ function slideHTML(p) {
           <div class="demo-actions">${button('▶ Run this scenario', 'run-demo', 'primary')}</div>
         </div>
       </div>
-      <p class="bottom-note">Interactive prototype of the decision flow. Private-pilot inbound screening exists in source; live physical-call proof is still pending. Outbound tasks and calendar writes are roadmap, not current production capabilities.</p>
+      <p class="bottom-note">Illustrative demo, not a live call. Prototype exists; launch finishing and device verification remain. Voicemail audio is not production-ready. Broader assistant features require separate validation.</p>
     </section>`;
   }
 
   if (p === 3) {
     return `<section class="slide" id="customer">
-      ${heading(4, 'TARGET AUDIENCE', 'One paying wedge first<br><em>Then adjacent waves</em>')}
+      ${heading(4, 'FIRST CUSTOMERS', 'Busy professionals<br><em>Who cannot ignore unknown calls</em>')}
       <div class="customer-layout">
         <div class="first-customer">
-          <span class="kicker">PRIMARY INITIAL ICP · U.S. · IPHONE</span>
-          <h3>Residential real-estate agents in U.S. metros</h3>
-          <p>Independent and small-team buyer/listing agents who live on inbound calls. A missed showing or offer call costs a commission. Seed product is iOS-only.</p>
-          <div class="job"><span>REPEATED JOB</span><b>Screen the call</b><i>Capture context</i><i>Take a permitted next step</i><i>Remind me</i></div>
+          <span class="kicker">FIRST PILOT · DALLAS AREA · IPHONE</span>
+          <h3>People with useful calls mixed into the noise</h3>
+          <p>Consultants, small-business owners, and salaried professionals. Recruit people who regularly receive unfamiliar calls and feel the interruption problem.</p>
+          <div class="job"><span>WHY THEY MIGHT PAY</span><b>Fewer distractions</b><i>Useful calls reach them</i><i>Simple personal rules</i></div>
         </div>
-        <div class="customer-rings" aria-label="ICP wedge then expansion waves">
-          <div class="ring core"><span>WAVE 1 · SEED</span><b>U.S. metro residential agents · iPhone</b><small>NAR / local board lists, independent brokerages, high inbound volume</small></div>
-          <div class="ring middle"><span>WAVE 2 · MONTHS 7–12</span><b>Android + Canada and India pilots</b><small>Same job, more devices and two new countries after the U.S. iOS workflow holds</small></div>
-          <div class="ring outer"><span>WAVE 3 · LATER</span><b>Homebuyers, consultants, older adults</b><small>Not the seed beachhead</small></div>
+        <div class="customer-rings">
+          <div class="ring core"><span>10 CONSULTANTS</span><b>New clients and project calls</b><small>Can screening help without losing opportunities?</small></div>
+          <div class="ring middle"><span>10 SMALL-BUSINESS OWNERS</span><b>Customers, suppliers, and interruptions</b><small>Real-estate agents can participate; they are one example.</small></div>
+          <div class="ring outer"><span>10 SALARIED PROFESSIONALS</span><b>Work focus and important personal calls</b><small>Test whether the benefit is worth $4.99 each month.</small></div>
         </div>
       </div>
-      <div class="why-pay">
-        <b>PRE-PILOT HYPOTHESIS</b>
-        <span>Channel: LinkedIn and local realtor-board outreach to U.S. metro agents</span>
-        <span>Why they pay: missed inbound calls cost commissions</span>
-        <span>Not yet measured conversion or retention</span>
-      </div>
+      <div class="why-pay"><b>30 FIRST TESTERS</b><span>Proposed recruitment, not existing customers</span><span>Choose the best audience using paid use and repeat use</span></div>
     </section>`;
   }
 
   if (p === 4) {
     return `<section class="slide" id="market">
-      ${heading(5, 'MARKET OPPORTUNITY', 'A large professional pool<br><em>A filtered, evidence-based SAM</em>')}
+      ${heading(5, 'MARKET OPPORTUNITY', 'Start with a clear audience<br><em>Earn the right to expand</em>')}
       <div class="market-grid">
         <div class="market-bars">
-          <div class="market-row tam"><span><b>TAM · THEORETICAL POOL</b><small>71.3M U.S. management and professional workers × $163 blended ARPU</small></span><strong>$11.6B</strong></div>
-          <div class="market-row sam"><span><b>SAM · OPERATIONAL FILTERS</b><small>1.065M real-estate brokers and agents × 86% metro × 95% smartphone × $163. Metro and smartphone rates are labeled assumptions on the BLS occupation count.</small></span><strong>$142M</strong></div>
-          <div class="market-row som"><span><b>18-MONTH TARGET · NOT MARKET SHARE</b><small>5,000 paying subscribers × $163. This is a seed operating target, not a SOM claim.</small></span><strong>$815K ARR</strong></div>
+          <div class="market-row tam"><span><b>TAM · EVERYONE WHO COULD BUY</b><small>U.S. adults who need personal call screening. The paying population still needs research.</small></span><strong>To size</strong></div>
+          <div class="market-row sam"><span><b>SAM · PEOPLE WE CAN SERVE</b><small>Initially U.S. iPhone professionals with compatible carrier forwarding, supported calling needs, and willingness to pay.</small></span><strong>To test</strong></div>
+          <div class="market-row som"><span><b>SOM · PEOPLE WE CAN WIN</b><small>Begin with 30 pilot testers. A year-one goal of 500–1,000 paying users needs evidence from this pilot.</small></span><strong>Start small</strong></div>
         </div>
         <div class="market-math">
-          <span class="kicker">BLENDED PAID ARPU</span>
-          <div><strong>40%</strong><span>Basic $8.99 → $3.596</span></div>
-          <div><strong>40%</strong><span>Plus $14.99 → $5.996</span></div>
-          <div><strong>20%</strong><span>Pro $19.99 → $3.998</span></div>
-          <div><strong>$13.59</strong><span>monthly blended ARPU · × 12 = $163 / year</span></div>
-          <p>Expansion hypothesis, not in SAM: 1.084M management analysts with the same metro/smartphone filters (~+$144M). Unvalidated.</p>
+          <span class="kicker">SIMPLE REVENUE MATH · NOT A MARKET ESTIMATE</span>
+          <div><strong>$4.99</strong><span>proposed monthly subscription</span></div>
+          <div><strong>× 12</strong><span>= $59.88 per paying user for a full year</span></div>
+          <div><strong>1,000</strong><span>paying users = $4,990 a month</span></div>
+          <div><strong>× 12</strong><span>= $59,880 yearly run rate, before costs</span></div>
+          <p>Validate audience size, phone compatibility, and demand before quoting a dollar TAM or SAM.</p>
         </div>
       </div>
-      <div class="market-source">TAM occupation base: U.S. BLS CPS Table 11b, 2025 annual averages — management, professional, and related occupations 71,338,000; real estate brokers and sales agents 1,065,000; management analysts 1,084,000. Cards are not drawn to scale. <a href="https://www.bls.gov/cps/cpsaat11b.htm" target="_blank" rel="noopener">Source ↗</a></div>
+      <p class="bottom-note">TAM = total available market. SAM = serviceable available market. SOM = serviceable obtainable market. A yearly run rate assumes the same monthly revenue for 12 months; it is not money already earned.</p>
     </section>`;
   }
 
   if (p === 5) {
     const plan = plans[state.plan];
-    const paid = plan.kind === 'paid';
+    const paid = state.plan === 'basic';
     return `<section class="slide" id="business-model">
-      ${heading(6, 'BUSINESS MODEL', 'One-month trial<br><em>Then a paid plan</em>')}
+      ${heading(6, 'HOW WE EARN', 'Try it free for 30 days<br><em>Test a $4.99 monthly plan</em>', button('Profit & growth math ↗', 'financials', 'secondary'))}
       <div class="plan-strip" role="tablist" aria-label="Proposed plans">${Object.keys(plans).map(key =>
-        button(`${plans[key].name}<small>${key === 'free' ? '$0 · 1 mo' : plans[key].price}</small>`, 'plan-' + key, state.plan === key ? 'selected' : '', tabAttrs(state.plan === key))
+        button(`${plans[key].name}<small>${plans[key].price}</small>`, 'plan-' + key, state.plan === key ? 'selected' : '', tabAttrs(state.plan === key))
       ).join('')}</div>
       <div class="model-grid">
         <div class="selected-plan">
-          <span class="kicker">${state.plan === 'plus' ? 'RECOMMENDED STARTING PAID PLAN' : state.plan === 'free' ? '30-DAY TRIAL ONLY' : 'PROPOSED PAID PLAN'}</span>
-          <h3>${plan.name}</h3>
-          <strong>${plan.price}<small>${plan.period}</small></strong>
-          <p>${plan.value}</p>
-          <p>${plan.detail}</p>
-          <p class="allow">${plan.allow}</p>
+          <span class="kicker">PROPOSED · NOT LIVE PRICING</span><h3>${plan.name}</h3><strong>${plan.price}<small>${plan.period}</small></strong>
+          <p>Personal call screening and caller rules.</p><p>Set usage limits after measuring real call costs. No unlimited-use promise.</p>
         </div>
         <div class="economics">
-          <span class="kicker">${paid ? 'PAID UNIT ECONOMICS · TARGET MODEL · UNVALIDATED' : 'TRIAL · THEN CHOOSE A PAID PLAN'}</span>
-          ${paid ? `
-            <div class="bridge">
-              <div><span>ARPU</span><b>${plan.arpu}</b></div><i>less</i>
-              <div><span>DIRECT COST</span><b>${plan.cost}</b></div><i>equals</i>
-              <div><span>GROSS PROFIT</span><b>${plan.profit}</b></div>
-            </div>
-            <div class="ratio"><strong>${plan.ratio}</strong><span>target gross-profit LTV / CAC</span><small>${plan.formula}</small></div>
-            <div class="thresholds">
-              <span>Gross margin ${plan.margin}</span>
-              <span>CAC ${plan.cac}</span>
-              <span>Payback ${plan.payback} · &lt; 6 months</span>
-              <span>Churn target ≤ 3% / month</span>
-            </div>
-          ` : `
-            <div class="free-funnel">
-              <div><b>Month 1</b><span>Free inbound screening. No standing free tier after 30 days.</span></div>
-              <div><b>Then choose</b><span>Basic, Plus, or Pro. Service continues only on a paid plan.</span></div>
-              <div><b>Learning data</b><span>Consented trial and paid usage produce labeled call outcomes that improve screening quality.</span></div>
-            </div>
-            <p class="allow">${plan.formula}</p>
-          `}
-          <p class="cost-line">Carrier + realtime API envelope (proposed): about $0.013/min telephony plus $0.04–$0.08/min model audio, held inside the ${paid ? plan.cost : '$1.20'} direct-cost cap. Overage: ${plan.overage}.</p>
+          <span class="kicker">${paid ? 'ILLUSTRATIVE MONTHLY COST PER PAYING USER' : 'LEARN FIRST, THEN ASK PEOPLE TO PAY'}</span>
+          ${paid ? `<div class="bridge"><div><span>USER PAYS</span><b>$4.99</b></div><i>less</i><div><span>USAGE + FEES</span><b>$2.00</b></div><i>equals</i><div><span>LEFT FOR BILLS</span><b>$2.99</b></div></div>
+          <div class="profit-callout"><strong>23,412 paying users</strong><span>to cover $70,000 of fixed monthly costs in this example.</span></div>
+          <p class="cost-line">$70,000 ÷ $2.99, rounded up. The $2 includes assumed call, cloud, AI, and payment/platform costs per user; it is not a vendor quote. This is before tax and financing costs.</p>` : `<div class="free-funnel"><div><b>First 30 days</b><span>Use the pilot and measure useful calls, missed calls, and actual costs.</span></div><div><b>After the trial</b><span>Offer the proposed $4.99 plan and measure who chooses to pay.</span></div><div><b>First 1–2 launch months</b><span>Budget for no subscription revenue. Trial use still costs the company money.</span></div></div>`}
         </div>
       </div>
-      <p class="bottom-note">Free is one month only. Paid mix for $13.59 ARPU remains 40% Basic / 40% Plus / 20% Pro after conversion. All usage, CAC, churn, and margin figures are targets, not measured results.</p>
+      <p class="bottom-note">No reliable profit date yet. At 7,000 paying users, monthly revenue would be $34,930—below the example fixed costs even before serving those users.</p>
     </section>`;
   }
 
   if (p === 6) {
-    const rows = [
-      ['Apple Live Voicemail / Silence Unknown Callers', 'Native feature', 'Device rules', 'No live workflow execution', 'Voicemail'],
-      ['Google Call Screen / Take a message', 'Native feature (Pixel)', 'Device rules', 'No authorized follow-through', 'Message'],
-      ['Carrier screening (Scam Shield, ActiveArmor, Call Filter)', 'Carrier feature', 'Network spam score', 'Block or warn only', 'No task history'],
-      ['Truecaller / Hiya', 'Third-party app', 'ID and block lists', 'No autonomous execution', 'Block log'],
-      ['Siri / Google Assistant', 'Native assistant', 'Partial preferences', 'Device tasks, not PSTN secretary', 'Partial'],
-      ['HelloShield OVI · proposed', 'Third-party app + authorized execution', 'Persistent permission graph', 'Approved workflows only', 'Task-completion history']
-    ];
     return `<section class="slide" id="competition">
-      ${heading(7, 'COMPETITION & MOAT', 'Screening is common<br><em>Authorized execution is not</em>', button('Named providers ↗', 'providers', 'secondary'))}
-      <div class="comparison">
-        <div class="comparison-head"><span>Alternative</span><span>Kind</span><span>Personal rules</span><span>Authorized execution</span><span>Outcome memory</span></div>
-        ${rows.map((row, index) => `<div class="comparison-row ${index === 5 ? 'ours' : ''}">${row.map((cell, i) => `<span>${i === 0 ? `<b>${cell}</b>` : cell}</span>`).join('')}</div>`).join('')}
+      ${heading(7, 'WHY CHOOSE HELLOSHIELD?', 'Free screening already exists<br><em>We must prove a better experience</em>')}
+      <div class="problem-grid">
+        <div class="problem-copy"><span class="kicker">WHAT CUSTOMERS ALREADY HAVE</span><h3>Apple and Google screen calls</h3><p>Apple can ask an unknown caller why they are calling. Google offers Call Screen on supported phones.</p><p>Asking who and why is not exclusive to HelloShield.</p><p class="market-source"><a href="https://support.apple.com/en-euro/111106" target="_blank" rel="noopener">Apple source ↗</a> · <a href="https://support.google.com/phoneapp/answer/9118387" target="_blank" rel="noopener">Google source ↗</a></p></div>
+        <div class="problem-copy"><span class="kicker">THE DIFFERENCE WE WILL TEST</span><h3>A personal service worth keeping</h3><div class="choice"><span>CONTROL</span><strong>Clear trusted and blocked caller rules</strong></div><div class="choice"><span>CARE</span><strong>Useful human calls still reach you</strong></div><div class="choice"><span>SUPPORT</span><strong>Guided setup and understandable results</strong></div></div>
       </div>
-      <div class="moat">
-        <div><span>PERMISSION GRAPH</span><b>What OVI may do</b></div><i>›</i>
-        <div><span>LOCAL RULES</span><b>Zero-latency boundaries</b></div><i>›</i>
-        <div><span>TASK HISTORY</span><b>Completed outcomes</b></div><i>›</i>
-        <div><span>NOT THE MOAT</span><b>Future agent-to-agent ideas</b></div>
-      </div>
-      <div class="future"><b>Defensible layer</b><span>Persistent per-user permissions, on-device/local rules, and a history of completed tasks. Speculative business-agent networks stay off the seed moat claim.</span></div>
+      <div class="future"><b>Proof before scale</b><span>Compare HelloShield with each tester’s existing phone features. Measure setup success, call reliability, repeat use, and willingness to pay.</span></div>
+      <p class="bottom-note">These are proposed reasons to choose HelloShield, not a proven competitive advantage. Availability of native features varies by device and region. Broader assistant features follow only after the core service works.</p>
     </section>`;
   }
 
   if (p === 7) {
     return `<section class="slide" id="validation">
-      ${heading(8, 'ROLLOUT STRATEGY', 'Win one U.S. iOS workflow<br><em>Then Android and two-country pilots</em>')}
+      ${heading(8, 'GO-TO-MARKET', 'Win the first 30 people<br><em>Then grow through proof and referrals</em>')}
       <div class="rollout-grid">
-        <div class="launch-thesis">
-          <span class="kicker">CHANNELS · PRE-PILOT HYPOTHESIS</span>
-          <h3>Start with U.S. metro agents, then widen reach</h3>
-          <p>Seed: LinkedIn and local realtor-board outreach to iPhone agents. Months 7–12: Android, additional U.S. regions, and Canada / India paid pilots so the same job can run on more devices and in more markets. None of these channels is proven yet.</p>
-          <div class="stage-label"><b>Current stage</b><span>Interactive prototype · pre-pilot · iOS</span></div>
-          <small>No live revenue, paid retention, or physical-call proof is claimed. Canada / India remain gated pilots, not a global launch.</small>
-        </div>
+        <div class="launch-thesis"><span class="kicker">DALLAS FIRST · FOUNDER-LED</span><h3>Show the app. Help people set it up.</h3><p>Recruit through personal introductions, local professional groups, and small-business communities. Offer a short demo and guided onboarding.</p><div class="stage-label"><b>Current stage</b><span>Prototype; launch finishing required</span></div><small>No verified paying customers or recurring revenue reported. Internal development and support roles are not customer traction.</small></div>
         <div class="phases">
-          <div><i>01</i><span><b>Days 0–90 · U.S. design partners</b><small>30 interviews · 10 observed tests · 5 paid iPhone agents · one live inbound appointment/inquiry workflow</small></span></div>
-          <div><i>02</i><span><b>Months 4–6 · U.S. controlled pilot</b><small>250 paid iOS users in selected metros · ≥70% of standard appointment/inquiry calls completed without user escalation</small></span></div>
-          <div><i>03</i><span><b>Months 7–12 · Multi-region + Android + CA / IN</b><small>2,000 paid · Android launch · more U.S. regions · Canada and India paid pilots · 4-week trial vs 12-month paid retention tracked separately</small></span></div>
-          <div><i>04</i><span><b>Months 13–18 · Scale what passed the pilots</b><small>5,000 paid across proven regions and countries · ≥50% 12-month paid retention path · ≥70% gross-margin path</small></span></div>
+          <div><i>01</i><span><b>Before launch · finish and verify</b><small>Complete real-device call checks, carrier onboarding, privacy review, and launch requirements.</small></span></div>
+          <div><i>02</i><span><b>First 1–2 months · 30–50 pilot users</b><small>Offer a free trial. Track call outcomes, setup problems, weekly use, and cost per user.</small></span></div>
+          <div><i>03</i><span><b>After the trial · test paid demand</b><small>Ask users to choose the $4.99 plan. Interview those who decline. Seek at least 10 paying pilot users as an initial decision point.</small></span></div>
+          <div><i>04</i><span><b>After repeat use · grow carefully</b><small>Test referrals and small channel experiments. Delay broad paid advertising, Android, and international expansion until the first market works.</small></span></div>
         </div>
       </div>
-      <div class="evidence-gates">
-        <b>90-DAY GO</b><span>5 paid U.S. iPhone agents and ≥70% unescalated standard calls</span>
-        <b>NO-GO / PIVOT</b><span>&lt;3 paid partners, any unauthorized transaction, or a privacy-policy breach</span>
-        <b>SAFETY</b><span>Zero unauthorized payments or credential sharing</span>
-      </div>
+      <div class="evidence-gates"><b>EXPAND IF</b><span>Users pay, stay, and cost less to serve than they pay</span><b>PAUSE IF</b><span>Critical call/privacy failures or weak paid demand</span><b>MEASURE</b><span>Conversion, cancellations, call quality, and actual costs</span></div>
     </section>`;
   }
 
   if (p === 8) {
     return `<section class="slide" id="team">
-      ${heading(9, 'TEAM & EXECUTION', 'Founder-built product<br><em>And the first four hires</em>')}
+      ${heading(9, 'TEAM & EXECUTION', 'Cloud, engineering, and telecom<br><em>Experience behind the product</em>')}
       <div class="team-layout">
-        <div class="founder">
-          <span class="founder-mark">SV</span>
-          <div>
-            <span class="kicker">FOUNDER & PRODUCT LEAD</span>
-            <h3>Swati Vaish</h3>
-            <p>Defined the two-question screening policy and fail-closed ownership routing. Built the FastAPI backend, Twilio voice path, and iOS PushKit / CallKit prototype. Implemented a server-authoritative realtime screening state machine with an automated scenario gate (0% false connect / false block on approved scenarios). Physical two-phone proof remains pending.</p>
-          </div>
-          <div class="diligence">
-            <b>In source today</b>
-            <span>Invite-only multi-user architecture, consented voicemail ingest, and the interactive investor prototype. Not claimed: scaled revenue, paid retention, or completed physical-call certification.</span>
-          </div>
-        </div>
-        <div class="capabilities">
-          <span class="kicker">IMMEDIATE HIRES · FROM THE $1.85M PRODUCT ENVELOPE</span>
-          ${[
-            ['M0 · AI / voice engineer', '$280k loaded · 18 mo', 'Owns OVI reliability, interruption, and evidence gates'],
-            ['M0 · Telephony / backend', '$280k loaded · 18 mo', 'Owns call control, observability, and handoff'],
-            ['M1 · iOS engineer', '$250k loaded · 18 mo', 'Owns CallKit / PushKit delivery and join lifecycle'],
-            ['M4 · Growth / partnerships', '$220k loaded · 14 mo', 'Owns brokerage outreach and association pilots']
-          ].map((item, index) => `<div><i>0${index + 1}</i><span><b>${item[0]}</b><small>${item[1]} · ${item[2]}</small></span></div>`).join('')}
+        <div class="founder"><span class="founder-mark">AK</span><div><span class="kicker">FOUNDER & PRODUCT LEAD</span><h3>Abhishek Kaushal</h3><p>19+ years of technology experience, including cloud strategy and engineering management.</p><p><b>Worked at Deloitte.</b><br><b>More than 3 years at T-Mobile in the telecom domain.</b></p></div><div class="diligence"><b>Why this experience matters</b><span>Relevant background for building a reliable call service, managing cloud costs, and leading engineering delivery.</span></div></div>
+        <div class="capabilities"><span class="kicker">START SMALL · HIRE AGAINST MILESTONES</span>
+          ${[['Founder-led launch', 'Own product, pilot recruitment, and delivery.'], ['First engineering hires', 'Prioritize telephony/backend and iOS reliability as funding and workload allow.'], ['Specialist support', 'Use testing, security, and legal specialists where needed.'], ['Growth hire later', 'Add dedicated growth support after users pay and stay.']].map((item,index)=>`<div><i>0${index+1}</i><span><b>${item[0]}</b><small>${item[1]}</small></span></div>`).join('')}
         </div>
       </div>
-      <div class="execution-question"><span>THE EXECUTION QUESTION</span><b>Can this team complete one inbound appointment/inquiry workflow for U.S. metro iPhone agents reliably enough that they pay and return?</b></div>
+      <div class="execution-question"><span>BUILD TRUST FIRST</span><b>Finish the app, verify useful calls get through, and prove people choose to keep paying.</b></div>
+      <p class="market-source"><a href="${PROFILE}" target="_blank" rel="noopener">Professional profile ↗</a> · Experience from public profile and founder-provided details. Employer names describe work history, not endorsement. Dallas, Texas registration planned.</p>
     </section>`;
   }
 
   if (p === 9) {
     return `<section class="slide" id="funds">
-      ${heading(10, 'THE $5M PLAN', '$5M over 18 months<br><em>To 5,000 paid and a Series A gate</em>')}
-      <div class="funds-layout">
-        <div class="fund-bars">
-          ${[
-            ['$1.85M', 'Headcount: founder + 4 hires + production support', 37],
-            ['$1.35M', 'AI / cloud / telephony: $1.23M fixed R&D infra + $0.12M variable COGS', 27],
-            ['$0.90M', 'CAC / marketing: ~$275k at $55 CAC × 5k paid; rest is channel tests', 18],
-            ['$0.40M', 'Trust, privacy, consent, and security', 8],
-            ['$0.30M', 'Legal, insurance, and operations', 6],
-            ['$0.20M', 'Working-capital reserve', 4]
-          ].map(item => `<div><span><b>${item[0]}</b><small>${item[1]}</small></span><i style="--w:${item[2]}%"></i><em>${item[2]}%</em></div>`).join('')}
-        </div>
-        <div class="return-plan">
-          <span class="kicker">18-MONTH OPERATING MODEL</span>
-          <div><b>M6</b><strong>250 paid</strong><span>One production inbound workflow</span></div>
-          <div><b>M12</b><strong>2,000 paid</strong><span>Android + U.S. regions + Canada / India pilots</span></div>
-          <div><b>M18</b><strong>5,000 paid · ≈$815K ARR</strong><span>Series A evidence: retention + 70% GM path</span></div>
-          <div class="scale-cases"><span><b>Variable COGS</b> 28.5k user-months × $4.08 blended direct cost ≈ $116k, inside the $1.35M infra envelope</span></div>
-          <small>$4.08 is blended paid COGS (40/40/20 at 70% GM), not the Plus sticker. Illustrative scale, not a forecast or guaranteed return.</small>
-        </div>
-      </div>
-      <p class="bottom-note">Proposed allocation. Hiring, vendor contracts, monthly burn, and financing terms require diligence. 5,000 paid × $13.59 × 12 = $815,400 ARR.</p>
+      ${heading(10, 'THE FUNDING PROPOSAL', '$1.5 million for 18 months<br><em>Finish, launch, and prove paid demand</em>', button('Valuation & investor return ↗', 'valuation', 'secondary'))}
+      <div class="funds-layout"><div class="fund-bars">
+        ${[['$900,000','People: staged hires, founder, and delivery support',60],['$210,000','Cloud, AI, telephony, and service usage',14],['$90,000','Pilot recruitment and measured growth experiments',6],['$60,000','Legal, security, insurance, and basic operations',4],['$240,000','Reserve for delays and unexpected costs',16]].map(item=>`<div><span><b>${item[0]}</b><small>${item[1]}</small></span><i style="--w:${item[2]}%"></i><em>${item[2]}%</em></div>`).join('')}
+      </div><div class="return-plan"><span class="kicker">PROPOSED CASH BUDGET · NOT CURRENT SPENDING</span>
+        <div><b>18</b><strong>$70,000 per month × 18</strong><span>$1,260,000 planned spending, including service usage</span></div>
+        <div><b>+</b><strong>$240,000 reserve</strong><span>Build in a buffer; review spending every month</span></div>
+        <div><b>=</b><strong>$1,500,000 requested</strong><span>Plan assumes no revenue is needed to fund these 18 months</span></div>
+        <div class="scale-cases"><span><b>Earlier $100K–$170K/month estimate</b> described spending, not sales. At that pace, $1.5M lasts only about 9–15 months before a separate reserve.</span></div>
+        <small>Lean proposal requires staged hiring and lower cloud spending. Validate supplier quotes, benefits, taxes, usage, and legal costs before committing.</small>
+      </div></div>
+      <p class="bottom-note"><b>Opening ownership proposal:</b> $1.5M for 15% implies $10M after investment and $8.5M before investment. This is negotiation math, not an independently established valuation.</p>
     </section>`;
   }
 
   return `<section class="slide closing" id="invitation">
-    <div class="closing-copy">
-      ${eyebrow(11, 'INVESTOR INVITATION')}
-      <h2>Fund the proof that<br><em>Busy professionals will pay</em></h2>
-      <p>HelloShield’s seed job is narrow: protect a U.S. metro real-estate agent’s attention on iPhone and complete the next permitted step.</p>
-      <div class="seed-objective"><span>THE SEED OBJECTIVE</span><b>Prove that the ICP will pay, return, and trust one inbound workflow — with zero unauthorized transactions.</b></div>
-      <div class="contact">
-        <b>Swati Vaish</b>
-        <span>Founder & Product Lead · HelloShield</span>
-        <a href="mailto:${MAIL}">${MAIL}</a>
-        <span>Phone and a live booking hold are confirmed by email reply. No public calendar link is published in this deck.</span>
-      </div>
+    <div class="closing-copy">${eyebrow(11,'INVESTOR INVITATION')}
+      <h2>Help launch HelloShield<br><em>And prove people will pay</em></h2>
+      <p>A personal call-screening app for busy professionals. The prototype is ready for further finishing and validation.</p>
+      <div class="seed-objective"><span>SEEKING $1.5 MILLION</span><b>18-month plan: finish the app, launch a controlled pilot, and prove repeat paid use.</b></div>
+      <div class="contact"><b>Abhishek Kaushal</b><span>Founder & Product Lead · HelloShield</span><span>19+ years in technology, cloud strategy, and engineering management</span><span>Worked at Deloitte · More than 3 years at T-Mobile in telecom</span><span>Dallas, Texas · Company registration planned</span><a href="${PROFILE}" target="_blank" rel="noopener">Abhishek’s LinkedIn profile ↗</a></div>
     </div>
-    <div class="closing-action">
-      <span class="closing-mark">HelloShield</span>
-      <h3>Request the deep dive</h3>
-      <p>Opens your email client with a pre-filled request for a 30-minute walkthrough and data-room access.</p>
-      ${linkBtn('Email a deep-dive request ↗', MAIL_DEEP, 'primary')}
-      ${linkBtn('Request data-room access ↗', MAIL_ROOM, 'secondary')}
-      ${button('Review the product demo', 'goto-2', 'secondary')}
-    </div>
+    <div class="closing-action"><span class="closing-mark">HelloShield</span><h3>Let’s discuss the evidence</h3><p>Product walkthrough, pilot plan, cost assumptions, and proposed investment terms.</p>${linkBtn('Connect with Abhishek ↗',PROFILE,'primary')}${button('Review the $1.5M plan','goto-9','secondary')}${button('How the valuation works','valuation','secondary')}</div>
   </section>`;
 }
 
@@ -486,7 +297,7 @@ function bindInputs() {
     range.setAttribute('aria-valuenow', String(state.minutes));
     $('hours').textContent = exposedHours() + 'h';
     $('time-formula').textContent =
-      `${state.minutes} min × 5 days × 48 weeks = ${exposedHours()} hours exposed. Net recoverable at 75% efficiency after setup overhead: ${netHours()} hours. Not a measured customer average.`;
+      `${state.minutes} min × 5 days × 48 weeks = ${exposedHours()} hours exposed. Illustration only; time saved has not been measured.`;
   };
 }
 
@@ -507,6 +318,7 @@ function go(page) {
   state.demoStep = 0;
   state.demoDone = false;
   render();
+  $('stage').scrollTop = 0;
 }
 
 function runDemo() {
@@ -538,7 +350,7 @@ function buildPrintRoot() {
     state.page = index;
     state.demoStep = 2;
     state.demoDone = true;
-    state.plan = 'plus';
+    state.plan = 'basic';
     state.scenario = 'dental';
     state.minutes = 4;
     return `<article class="print-slide">${slideHTML(index)}</article>`;
@@ -575,33 +387,28 @@ function act(action) {
     render();
     return;
   }
-  if (action === 'providers') {
-    modal(`<div class="kicker">NAMED MARKET CONTEXT</div>
-      <h2>Adjacent products solve parts of the job</h2>
-      <table>
-        <thead><tr><th>Provider</th><th>What it provides</th><th>Gap HelloShield targets</th></tr></thead>
-        <tbody>
-          <tr><td>Apple Live Voicemail</td><td>Native unknown-call screening and transcript</td><td>Authorized follow-through after the screen</td></tr>
-          <tr><td>Google Call Screen</td><td>Pixel native screen / take a message</td><td>Persistent permission graph and completed tasks</td></tr>
-          <tr><td>T-Mobile Scam Shield, AT&amp;T ActiveArmor, Verizon Call Filter</td><td>Carrier spam scoring</td><td>Personal rules and a next permitted step</td></tr>
-          <tr><td>Truecaller / Hiya</td><td>Caller ID and block lists</td><td>Autonomous execution inside user-approved bounds</td></tr>
-          <tr><td>Smith.ai / Ruby</td><td>Human virtual reception</td><td>Consumer subscription economics with persistent context</td></tr>
-        </tbody>
-      </table>
-      <p class="note">Publicly described behavior. Capabilities vary by device, carrier, and plan. HelloShield’s execution layer is proposed and must be proven in the pilot.</p>`);
+  if (action === 'financials') {
+    modal(`<div class="kicker">ILLUSTRATIVE PLANNING · NOT A FORECAST</div><h2>When could HelloShield make a profit?</h2>
+      <p>When subscription income covers both the cost of serving users and the company’s other bills. There is no reliable date yet.</p>
+      <table><thead><tr><th>Planning point</th><th>Paying users</th><th>Monthly revenue at $4.99</th><th>Yearly run rate</th></tr></thead><tbody>
+      ${[["Month 6",100],["Month 12 · low",500],["Month 12 · high",1000],["Year 2",3000],["Year 3",7000]].map(([period,users])=>`<tr><td>${period}</td><td>${users.toLocaleString('en-US')}</td><td>$${(users*4.99).toLocaleString('en-US',{maximumFractionDigits:0})}</td><td>$${(users*4.99*12).toLocaleString('en-US',{maximumFractionDigits:0})}</td></tr>`).join('')}
+      </tbody></table><p class="note">These are illustrative targets, not evidence-based predictions. Yearly run rate means monthly revenue × 12; actual yearly sales depend on when people join and leave.</p>
+      <h3>Cost changes the number of users needed</h3><table><thead><tr><th>Monthly cost per paid user</th><th>Left from $4.99</th><th>Users to cover $70K fixed bills</th></tr></thead><tbody>
+      ${[2,3,4].map(cost=>`<tr><td>$${cost.toFixed(2)}</td><td>$${(4.99-cost).toFixed(2)}</td><td>${Math.ceil(70000/(4.99-cost)).toLocaleString('en-US')}</td></tr>`).join('')}
+      </tbody></table><p class="note">This sensitivity assumes $70K of fixed costs PLUS per-user costs. The funding slide instead budgets $70K TOTAL monthly spending, including usage. They are different assumptions. Real break-even needs a measured fixed/variable cost split, trial costs, platform fees, and acquisition spending. No profit is implied by the growth targets.</p>
+      <p class="note">MRR simply means recurring subscription income per month. $15K–$30K a month × 12 = $180K–$360K yearly run rate. Those are examples, not HelloShield’s current income.</p>`);
     return;
   }
-  if (action === 'contact') {
-    modal(`<div class="kicker">INVESTOR NEXT STEP</div>
-      <h2>Continue with Swati directly</h2>
-      <p>Use the buttons below. Each opens your email client with a pre-filled request. Phone and a calendar hold are confirmed by reply — this deck does not publish a phone number or a public booking page.</p>
-      <div class="contact-card">
-        <b>Swati Vaish</b>
-        <span>Founder & Product Lead · HelloShield</span>
-        <a href="mailto:${MAIL}">${MAIL}</a>
-      </div>
-      <p class="contact-actions">${linkBtn('Request a 30-minute deep dive', MAIL_DEEP, 'primary')} ${linkBtn('Request data-room access', MAIL_ROOM, 'secondary')}</p>`);
+  if (action === 'valuation') {
+    modal(`<div class="kicker">OPENING PROPOSAL · SUBJECT TO NEGOTIATION</div><h2>Where does $8.5 million come from?</h2>
+      <table><tbody><tr><td>Investment requested</td><td>$1,500,000</td></tr><tr><td>Proposed investor ownership</td><td>15%</td></tr><tr><td>Value after investment</td><td>$1.5M ÷ 15% = $10M</td></tr><tr><td>Value before investment</td><td>$10M − $1.5M = $8.5M</td></tr><tr><td>Existing owners retain</td><td>85%, before other dilution</td></tr></tbody></table>
+      <p><b>This calculation does not prove the company is worth $8.5M.</b> It starts with an amount to raise and ownership to offer. A prototype and founder experience support the conversation; paid demand, retention, call reliability, costs, and comparable deals must support an agreed price. Dallas registration alone does not establish value.</p>
+      <h3>How an investor could earn a return</h3><p>An investor may sell shares in an acquisition or another permitted share sale. Profit does not automatically mean investors get cash. Example only: 15% of a $30M sale is $4.5M before dilution, debt, fees, taxes, and share preferences. A sale and its timing are not guaranteed.</p>
+      <h3>If the business fails</h3><p>Equity investors can lose all their investment; it is not a guaranteed loan repayment. Company funds and available assets cover obligations according to applicable law and contracts. Personal guarantees or other legal obligations can create personal exposure. Financing and wind-down terms need legal review.</p>
+      <p class="market-source"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/private" target="_blank" rel="noopener">SEC guidance on private-investment risk ↗</a></p>
+      <p class="note">This is a priced-equity illustration. A SAFE valuation cap would not guarantee these ownership percentages; conversion, later fundraising, and an employee option pool can change ownership.</p>`);
   }
+
 }
 
 document.addEventListener('click', event => {

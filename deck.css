@@ -413,7 +413,7 @@ input[type=range] { width: 100%; accent-color: var(--peach); margin: 10px 0; }
 .market-math span { font-size: 14px; color: var(--muted); }
 .market-math p { font-size: 13px; margin-top: 10px; }
 
-.plan-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+.plan-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
 .plan-strip button { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
 .plan-strip small { color: var(--peach); }
 .selected-plan h3 { font-size: 32px; margin: 10px 0 4px; }
@@ -713,7 +713,7 @@ td:first-child { color: var(--ink); font-weight: 600; }
     overflow: hidden;
   }
   .print-slide .slide::after {
-    content: "CONFIDENTIAL · INVESTOR PREVIEW · © 2026 SWATI VAISH · HELLOSHIELD · DO NOT COPY";
+    content: "CONFIDENTIAL · INVESTOR PREVIEW · © 2026 HELLOSHIELD · DO NOT COPY";
     position: absolute;
     left: 0;
     right: 0;
@@ -723,3 +723,46 @@ td:first-child { color: var(--ink); font-weight: 600; }
     font: 500 12px "IBM Plex Mono", monospace;
   }
 }
+
+/* Keep the updated copy readable in the embedded browser and on phones. */
+.slide > *, .slide div, .slide span { min-width: 0; }
+.capabilities small { display: block; margin-top: 4px; }
+.founder p + p { margin-top: 12px; }
+.profit-callout { display: grid; gap: 5px; padding: 16px; margin-bottom: 12px; border: 1px solid #5571ba; border-radius: 14px; background: #203875; }
+.profit-callout strong { font-size: 25px; color: var(--peach); }
+.market-math > div { grid-template-columns: 85px 1fr; gap: 10px; }
+dialog h3 { font-size: 22px; margin: 18px 0 8px; }
+dialog p + p { margin-top: 12px; }
+@media (max-width: 760px) {
+  :root { --footer: 88px; }
+  header { gap: 8px; }
+  .brand-mark { width: 30px; height: 30px; }
+  .brand { gap: 6px; }
+  nav { gap: 4px; }
+  nav button { padding: 7px; font-size: 12px; }
+  #fullscreen { display: none; }
+  .heading { align-items: flex-start; flex-direction: column; }
+  .hero h1 em { white-space: normal; }
+  .founder-line { flex-wrap: wrap; }
+  .footer-main { grid-template-columns: 1fr auto; }
+  #progress { grid-column: 1 / -1; grid-row: 2; gap: 5px; }
+  #progress button { width: 22px; }
+  .legal { gap: 3px 7px; font-size: 9px; }
+  .legal small { display: none; }
+  .market-row { grid-template-columns: 1fr; gap: 8px; }
+  .comparison { max-width: 100%; }
+  .closing-action a, .closing-action button { min-width: 0; width: 100%; }
+  .evidence-gates { grid-template-columns: 1fr; }
+  .menu, .contact-actions { grid-template-columns: 1fr; }
+  dialog { padding: 24px 16px; width: 94vw; }
+  dialog table { font-size: 11px; }
+  dialog th, dialog td { padding: 8px 4px; }
+}
+@page { size: 13.333in 7.5in; margin: 0; }
+@media print {
+  .print-slide .slide { padding-bottom: 34px; }
+  .print-slide button, .print-slide .heading > .secondary { display: none; }
+  .print-slide .demo-steps button, .print-slide .plan-strip button { display: flex; }
+}
+
+.demo-steps small { display: block; margin-top: 4px; }
