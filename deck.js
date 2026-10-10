@@ -37,12 +37,28 @@ const competitors = [
   {name:'Apple',offer:'Built-in unknown-call screening',scale:'2.5B+ active Apple devices',date:'Jan 2026; all product categories, not screening users',learn:'Free and built in: our setup and results must justify paying.',source:'https://www.apple.com/newsroom/2026/01/apple-reports-first-quarter-results/',feature:'https://support.apple.com/en-euro/111106'},
   {name:'Google',offer:'Call Screen on supported phones',scale:'3B+ active Android devices',date:'May 2025; ecosystem size, not Call Screen users',learn:'Demonstrate useful-call handling; do not claim screening is unique.',source:'https://blog.google/products-and-platforms/platforms/android/the-android-show-io-2025/',feature:'https://support.google.com/phoneapp/answer/9118387'},
   {name:'Truecaller',offer:'Caller ID, spam blocking, and AI Assistant',scale:'500M+ active users',date:'Jul 2026 company statement; Q2 average excluding iOS: 471M',learn:'Closest rival. Test switching reasons with its users, not just feature lists.',source:'https://corporate.truecaller.com/newsroom/press-release/sequential-growth-across-all-revenue-streams?id=AF7CD16BDA563CF7',feature:'https://www.truecaller.com/truecaller-for-ios'},
-  {name:'Wajo',offer:'Agents that act across calls, bookings, and other tools',scale:'User count not publicly disclosed',date:'Official site reviewed 10 Oct 2026',learn:'Sell a focused inbound-call service to people who do not need broad task automation.',source:'https://wajo.ai/',feature:'https://wajo.ai/'},
-  {name:'Poka',offer:'AI outbound calls, messages, reservations, and reminders',scale:'User count not publicly disclosed',date:'Poka AI Call Assistant listing reviewed 10 Oct 2026',learn:'Explain the different job: handling incoming calls, rather than placing outbound calls.',source:'https://apps.apple.com/us/app/poka-your-ai-call-assistant/id6788496398',feature:'https://www.cyborgate.uk/poka/terms/'},
+  {name:'Wajo',offer:'Agents that act across calls, bookings, and other tools',scale:'User count not publicly disclosed',date:'Official site reviewed 10 Oct 2026',learn:'Test demand for focused inbound screening plus bounded outbound requests.',source:'https://wajo.ai/',feature:'https://wajo.ai/'},
+  {name:'Poka',offer:'AI outbound calls, messages, reservations, and reminders',scale:'User count not publicly disclosed',date:'Poka AI Call Assistant listing reviewed 10 Oct 2026',learn:'Compare the combined inbound and outbound experience, not an outbound-only feature claim.',source:'https://apps.apple.com/us/app/poka-your-ai-call-assistant/id6788496398',feature:'https://www.cyborgate.uk/poka/terms/'},
   {name:'Hiya',offer:'Caller identity and protection through carrier/device partners',scale:'550M+ users protected monthly',date:'Mar 2026; network reach, not paid app subscribers',learn:'Use community distribution first; carrier partnerships are a later option.',source:'https://www.hiya.com/en-au/newsroom/press-releases/state-of-the-call-2026-ai-deepfake-voice-calls-hit-1-in-4-americans-as-consumers-say-scammers-are-beating-mobile-network-operators-2-to-1',feature:'https://www.hiya.com/why-hiya/voice-intelligence-platform'}
 ];
 
 const demos = {
+  outbound: {
+    photo:'', initials:'OV', kind:'OUTBOUND · IMPLEMENTED', caller:'Appointment request',
+    desk:'Deliver the user’s approved request by voice', context:'Ask a contact whether Tuesday at 2 PM works',
+    permissions:['✓ User approves recipient and request','✓ Recipient decision determines the result'],
+    steps:[['Approve','Review recipient, time, and message'],['Call','Convey the request and ask availability'],['Report','Return confirmed, declined, or unresolved']],
+    speech:['“Please call my contact and ask whether Tuesday at 2 PM works.”','After the required introduction and consent, Ovi conveys the approved appointment request.','Report the recipient’s actual response. A completed phone call alone is not a confirmed appointment.'],
+    artifact:{kicker:'IMPLEMENTED; EXTERNAL PROOF PENDING',title:'The user receives the outcome',body:'Appointment agreement is not automatic calendar booking. Live recipient-call and owner-notification verification remains; this is not a general-purpose message-delivery claim.'}
+  },
+  pizza: {
+    photo:'', initials:'PZ', kind:'FUTURE PROPOSED USE CASE', caller:'Order pizza for delivery',
+    desk:'Not implemented', context:'Ask Ovi to place an approved pizza order',
+    permissions:['✓ Proposed order and spending approval','× No current purchasing or delivery capability'],
+    steps:[['Specify','Choose order, address, and budget'],['Approve','Authorize the exact order and payment'],['Confirm','Obtain merchant acceptance and status']],
+    speech:['Future concept: tell Ovi what pizza you want and where it should arrive.','A future flow would need explicit purchase approval, merchant handling, and payment safeguards.','A merchant would fulfill delivery. HelloShield would coordinate the order and report confirmed status.'],
+    artifact:{kicker:'PLANNED CONCEPT',title:'Ordering assistance, not a delivery fleet',body:'Purchases, payments, and merchant fulfillment are future work. No pizza-order revenue or cost is included in the forecast.'}
+  },
   dental: {
     photo: '', initials: 'BD', kind: 'INBOUND CALL', caller: 'BrightSmile Dental',
     desk: 'Appointment desk', context: 'An unknown number calls during your workday',
@@ -90,8 +106,8 @@ function slideHTML(p) {
       <div class="hero-shade"></div>
       <div class="hero-copy">
         <h1>Meet “OVI”<br><em>Your AI Call Assistant</em></h1>
-        <p class="hero-tag">A personal call-screening app for busy people who cannot miss useful calls.</p>
-        <p class="hero-rules">Ask who. Ask why. Let useful calls reach you.</p>
+        <p class="hero-tag">One personal call assistant for incoming calls and authorized outbound requests.</p>
+        <p class="hero-rules">Screen incoming calls. Make authorized calls. Bring back the outcome.</p>
         <div class="hero-actions">${button('See the product ↗', 'goto-2', 'primary')}${button('Meet the first customer', 'goto-3', 'secondary')}</div>
         <div class="founder-line"><b>Abhishek Kaushal</b><span>Founder & Product Lead</span></div>
       </div>
@@ -100,13 +116,13 @@ function slideHTML(p) {
 
   if (p === 1) {
     return `<section class="slide" id="problem">
-      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Start with what reaches you</em>')}
+      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>')}
       <div class="problem-grid">
         <div class="problem-copy">
           <p class="lead">Busy professionals face two jobs: deciding which incoming calls matter, and finding time to call people back.</p>
           <div class="choice"><span>INBOUND</span><strong>Answer and lose focus—or ignore a useful caller</strong></div>
           <div class="choice"><span>OUTBOUND</span><strong>Chase callbacks, wait on hold, repeat the context</strong></div>
-          <p class="takeaway">Inbound first: screen who is calling and why, while keeping useful human callers reachable. Later opportunity: user-approved callbacks using that context. Outbound is not in the current prototype.</p>
+          <p class="takeaway">HelloShield screens incoming calls and Ovi handles authorized outbound appointment requests and their spoken messages. Both are implemented; live verification remains. Pizza ordering is a future use case.</p>
         </div>
         <div class="attention-calc">
           <span class="kicker">ILLUSTRATIVE INTERRUPTION LOAD</span>
@@ -125,10 +141,11 @@ function slideHTML(p) {
     const tabs = [
       ['dental', 'Inbound appointment'],
       ['client', 'New client'],
-      ['uncertain', 'Unclear caller']
+      ['outbound', 'Outbound appointment / message'],
+      ['pizza', 'Pizza · future']
     ];
     return `<section class="slide" id="product">
-      ${heading(3, 'THE PRODUCT', 'Two questions before the ring<br><em>You keep the final choice</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
+      ${heading(3, 'THE PRODUCT', 'Incoming calls. Outgoing requests.<br><em>One personal call assistant</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
       <div class="scenario-tabs" role="tablist" aria-label="Product scenarios">${tabs.map(([id, label]) =>
         button(label, 'scenario-' + id, state.scenario === id ? 'selected' : '', tabAttrs(state.scenario === id))
       ).join('')}</div>
@@ -152,7 +169,7 @@ function slideHTML(p) {
           <div class="demo-actions">${button('▶ Run this scenario', 'run-demo', 'primary')}</div>
         </div>
       </div>
-      <p class="bottom-note">Illustrative demo, not a live call. Prototype exists; launch finishing and device verification remain. Voicemail audio is not production-ready. Broader assistant features require separate validation.</p>
+      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound and bounded outbound appointment/message flows are implemented; external proof and release finishing remain. Pizza ordering is proposed future work. Voicemail audio is not production-ready.</p>
     </section>`;
   }
 
@@ -199,22 +216,22 @@ function slideHTML(p) {
       <div class="pricing-grid">${Object.values(plans).map(plan=>`<div class="selected-plan"><span class="kicker">PROPOSED MONTHLY SUBSCRIPTION</span><h3>${plan.name}</h3><strong>$${plan.price.toFixed(2)}<small>/ month</small></strong><p>${plan.audience}</p><p><b>${plan.minutes} managed call minutes per month</b></p><p>Two-question screening, personal caller rules, and delivery to the app.</p><small>Estimated average service cost: $${plan.cost.toFixed(2)} per user, including platform fees.</small></div>`).join('')}</div>
       <div class="why-pay"><b>30-DAY FREE TRIAL</b><span>10 managed minutes</span><span>Plus offers 3× the included minutes</span><span>Proposed allowances; billing and limits still to be built</span></div>
       <div class="profit-callout"><strong>70% Personal + 30% Plus = $6.19 per paying user each month</strong><span>At 1,000 users: $6,190 monthly sales versus $4,990 if everyone chose Personal. That is $1,200 more revenue, with higher service costs.</span></div>
-      <p class="bottom-note">Managed minutes include screening and connected call time. Warn before the allowance is used; require an upgrade or guided forwarding pause, with no surprise charges. The base forecast reaches first monthly operating profit in month ${model.firstProfitMonth} at ${number(model.firstProfitUsers)} paid users. These are proposed terms and modeled results, not launch-ready billing or measured margins.</p>
+      <p class="bottom-note">Managed minutes include screening and connected call time. Warn before the allowance is used; require an upgrade or guided forwarding pause, with no surprise charges. The base forecast reaches first monthly operating profit in month ${model.firstProfitMonth} at ${number(model.firstProfitUsers)} paid users. These proposed prices and the forecast cover inbound usage only. Outbound packaging and costs remain to be modeled; billing is not launch-ready.</p>
     </section>`;
   }
   if (p === 6) {
     return `<section class="slide" id="competition">
-      ${heading(7,'INBOUND / OUTBOUND LANDSCAPE','Protect attention first<br><em>Then explore the full call journey</em>',button('Full study, scale & sources ↗','competitor-study','secondary'))}
+      ${heading(7,'INBOUND / OUTBOUND LANDSCAPE','One assistant, both directions<br><em>Screen incoming. Act on approved requests.</em>',button('Full study, scale & sources ↗','competitor-study','secondary'))}
       <div class="table-scroll"><table class="study-table"><thead><tr><th>Provider / offering</th><th>Inbound · calls to you</th><th>Outbound · calls for you</th></tr></thead><tbody>
         <tr><td>Apple / Google</td><td>Built-in call screening</td><td>Broader tools vary; screening is the offer compared here</td></tr>
         <tr><td>Truecaller / Hiya</td><td>Caller ID and protection; Truecaller Assistant screens</td><td>Outbound task completion is not the reviewed core offer</td></tr>
         <tr><td>Wajo</td><td>Broad workflows; personal screening not established in reviewed material</td><td>Calls and coordinates to complete tasks</td></tr>
         <tr><td>Poka</td><td>Personal inbound screening not established in reviewed material</td><td>AI calls, reservations, and follow-ups</td></tr>
-        <tr class="hello-row"><td>HelloShield · prototype</td><td>Personal rules, two questions, useful human calls through</td><td>Not in current scope</td></tr>
-        <tr class="hello-row"><td>HelloShield · full-suite vision</td><td>Screen and retain approved call context</td><td>User-approved callbacks and follow-up calls · future concept</td></tr>
+        <tr class="hello-row"><td>HelloShield · implemented</td><td>Personal rules, two questions, useful human calls through</td><td>Ovi appointment requests and approved spoken request delivery; external proof pending</td></tr>
+        <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>Pizza ordering and broader merchant tasks · proposed, not implemented</td></tr>
       </tbody></table></div>
-      <div class="future"><b>Why inbound first?</b><span>Earn trust on one recurring job: reduce interruptions without losing useful callers. Then test demand for callbacks before building a broader suite.</span></div>
-      <p class="bottom-note">Opportunity to test: one workflow from “who called and why?” to “follow up with my approval.” This is not a proven gap across all competitors. Full-suite vision covers calls only; outbound is unbuilt and excluded from the forecast. Public audience figures and sources are in the full study.</p>
+      <div class="future"><b>Why both directions?</b><span>Incoming calls compete for attention; outgoing requests take time. HelloShield combines screening with authorized appointment calls and outcome reporting.</span></div>
+      <p class="bottom-note">Positioning to validate: personal rules, explicit authorization, and clear outcomes across both call directions. This is not a proven exclusive advantage. Outbound implementation does not mean live readiness. The current forecast models inbound plans only; outbound pricing and costs need a separate model.</p>
     </section>`;
   }
   if (p === 7) {
@@ -266,7 +283,7 @@ function slideHTML(p) {
   return `<section class="slide closing" id="invitation">
     <div class="closing-copy">${eyebrow(11,'INVESTOR INVITATION')}
       <h2>Help launch HelloShield<br><em>And prove people will pay</em></h2>
-      <p>A personal call-screening app for busy professionals. The prototype is ready for further finishing and validation.</p>
+      <p>A personal assistant for inbound screening and authorized outbound appointment calls. Implemented prototype; launch finishing and live verification remain.</p>
       <div class="seed-objective"><span>SEEKING $1.5 MILLION</span><b>18-month plan: finish the app, launch a controlled pilot, and prove repeat paid use.</b></div>
       <div class="contact"><b>Abhishek Kaushal</b><span>Founder & Product Lead · HelloShield</span><span>19+ years in technology, cloud strategy, and engineering management</span><span>Worked at Deloitte · More than 3 years at T-Mobile in telecom</span><span>Patent application filed · Technical scope not disclosed</span><span>Dallas, Texas · Company registration planned</span><a href="${PROFILE}" target="_blank" rel="noopener">Abhishek’s LinkedIn profile ↗</a></div>
     </div>
@@ -410,11 +427,11 @@ function act(action) {
   if (action === 'competitor-study') {
     modal(`<div class="kicker">COMPETITIVE STUDY · REVIEWED 10 OCTOBER 2026</div><h2>What is different, and what we must prove</h2>
       ${competitors.map(c=>`<h3>${c.name}</h3><p><b>${c.offer}.</b> ${c.scale}. ${c.date}. ${c.learn}</p><p class="market-source"><a href="${c.source}" target="_blank" rel="noopener">Scale / company source ↗</a> · <a href="${c.feature}" target="_blank" rel="noopener">Product source ↗</a></p>`).join('')}
-      <h3>What HelloShield can credibly say</h3><p>HelloShield is an inbound-call prototype with personal caller rules, a governed two-question flow, and a policy that uncertain human callers connect to the owner’s app. The proposed service adds guided setup and low-priced usage tiers. These are design choices to test, not evidence that competitors cannot do similar things.</p>
-      <p>Truecaller Assistant already screens calls on iPhone and Android and is the closest functional competitor. Apple and Google are strong built-in alternatives. Wajo and Poka emphasize broader task execution and outbound actions. HelloShield is not claiming those features as a current advantage. The patent application is filed; technical scope is not disclosed and no granted exclusivity is claimed.</p>
-      <h3>Why start with inbound, and what would outbound add?</h3><p>Incoming calls create an immediate choice: interrupt work or risk missing someone important. HelloShield starts with screening and delivery because that is the prototype’s defined scope and can be tested with a focused pilot. Outbound work creates different problems: waiting, retries, passing on context, and confirming what the user has authorized. Current HelloShield does not perform that work.</p>
-      <p>The call-only full-suite vision would connect inbound context to a user-approved callback or follow-up. Example: identify an incoming service call, then let the owner approve a return call with the relevant context. This is a future concept, not an implemented capability, funded roadmap commitment, or forecast revenue source. Expansion requires demand evidence, permissions and policy review, reliable results, and separately measured costs.</p>
-      <p>The potential gap is continuity between screening and follow-up under the same personal rules. We have not established that this is absent from every competing platform. Wajo already advertises permissions and task coordination; Apple and Google have wider product portfolios. The table maps the reviewed offers, not every capability of each company. Test the continuity hypothesis with customers before claiming differentiation.</p>
+      <h3>What HelloShield can credibly say</h3><p>HelloShield combines inbound screening with Ovi outbound appointment requests: the user authorizes a recipient, a resolved time, and the request; Ovi conveys the spoken request, collects the recipient’s response, and returns the outcome. The outbound implementation is recorded in the development tracker and ongoing deployment work. Status: Implemented; external proof pending. The latest rollout report still requires live call transport, authorization, and a controlled recipient-to-owner outcome test.</p>
+      <p>Message delivery here means conveying the approved appointment request by voice. General free-form message delivery needs its own evidence before being presented as verified. Agreement to a time does not prove calendar booking. A completed call does not prove agreement.</p>
+      <h3>Future use case: pizza ordering</h3><p>Ovi could eventually place an approved pizza order for delivery. That needs order and spending approval, merchant acceptance, payment safeguards, and fulfillment status. The merchant delivers the pizza. This remains a proposed use case and is outside the current implementation and financial forecast.</p>
+      <h3>How the combined offering could stand out</h3><p>Test whether customers value one personal assistant for screening incoming calls and making authorized outbound requests, with explicit decisions and clear results. Truecaller already has screening; Wajo and Poka already support outbound actions. Combining directions is positioning to validate, not proof of exclusivity or superiority. The patent application is filed; technical scope is not disclosed and no granted exclusivity is claimed.</p>
+      <p>The $4.99 / $8.99 forecast currently covers inbound call usage. Outbound allowances, pricing, and provider costs must be modeled before selling a combined paid package; no outbound or pizza revenue has been added to the projections.</p>
       <h3>Turn research into a customer-acquisition test</h3><p>Interview 10 native-screening users, 10 Truecaller/Hiya users, and 10 people using no assistant. These are research segments within the initial professional pilot, not extra customers. Compare setup success, important-call misses, interruptions, retention, and willingness to pay. Publish comparisons only with measured evidence and participant permission. Use the strongest result in demos, referral invitations, and community partnerships.</p>
       <p>Apple’s 2.5B and Google’s 3B counts are devices across their ecosystems; screening-specific active users are not disclosed in the cited sources. Truecaller’s 500M+ total and its Q2 471M average excluding iOS are different measures. Hiya’s 550M is protected network reach. Wajo and Poka do not publish a verified active-user count in the reviewed official materials. Downloads, reviews, and ratings are not paying customers.</p>
       <p>Pricing context: Apple/Google screening is built in on supported devices. Truecaller offers paid Premium/Assistant with region-dependent pricing. Wajo lists free tiers and contact-sales Pro. Poka lists in-app subscriptions/credits. HelloShield therefore has to prove enough extra value for $4.99 or $8.99; being cheaper than an assumed competitor price is not the strategy.</p>`);return;
