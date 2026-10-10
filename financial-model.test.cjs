@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const {calculate} = require('./financial-model.js');
+const {calculate,calculateCombined} = require('./financial-model.js');
 const close = (actual, expected) => assert.ok(Math.abs(actual-expected)<0.01,`${actual} != ${expected}`);
 test('two plans, weighted revenue, and market arithmetic use the same prices',()=>{
   const m=calculate();close(m.price,6.19);close(m.cost,3.985);close(m.contribution,2.205);
@@ -37,4 +37,44 @@ test('higher usage and acquisition costs delay or prevent the modeled profit',()
   assert.equal(calculate({personalCost:4.25,plusCost:6.70}).firstProfitMonth,null);
   assert.equal(calculate({acquisitionCost:40}).firstProfitMonth,null);
   assert.ok(calculate({plusShare:0.5}).firstProfitMonth<60);
+});
+
+test('business launch, customer growth, and every combined cash movement reconcile',()=>{
+  const m=calculateCombined();
+  assert.ok(m.months.slice(0,6).every(r=>r.businessRevenue===0));
+  assert.deepEqual(m.annual.map(r=>r.businesses),[100,500,1500,3000,5000]);
+  let previous=0,cash=m.assumptions.initialFunding;
+  for(const r of m.months){
+    close(previous-r.businessCancellations+r.businessAdditions,r.businesses);
+    close(r.businessTrials*.20,r.businessAdditions);
+    close(r.businessAcquisition,r.businessAdditions*250);
+    close(r.revenue,r.personalRevenue+r.businessRevenue);
+    close(r.businessServiceCost,r.averageBusinesses*36);
+    close(r.expenses,r.serviceCost+r.acquisition+r.fixedCost+r.buildCost);
+    close(r.profit,r.revenue-r.expenses);
+    cash+=r.profit;close(r.cash,cash);previous=r.businesses;
+  }
+  close(m.months.reduce((s,r)=>s+r.buildCost,0),75000);
+  assert.equal(m.months[59].fixedCost,155000);
+  for(const year of m.annual){
+    const rows=m.months.slice((year.year-1)*12,year.year*12);
+    close(year.revenue,rows.reduce((s,r)=>s+r.revenue,0));
+    close(year.profit,rows.reduce((s,r)=>s+r.profit,0));
+  }
+});
+test('combined annual margin, monthly margin, funding and accumulated losses stay distinct',()=>{
+  const m=calculateCombined(),last=m.months[59],year=m.annual[4];
+  assert.equal(m.sustainedProfitMonth,55);assert.equal(m.firstProfitableYear,5);
+  close(year.revenue,6763200);close(year.profit,56900);
+  close(year.margin,56900/6763200);
+  close(last.revenue,692744.135);close(last.profit,58315.9325);
+  close(last.margin,last.profit/last.revenue);
+  assert.ok(last.margin>year.margin);
+  assert.equal(m.cashRunsOutMonth,22);close(m.additionalFunding,1917317.5);
+  assert.ok(Math.min(...m.months.map(r=>r.cash))+m.assumptions.followOnFunding>=240000);
+  assert.ok(m.cumulativeProfit<0,'Operating profit does not recover accumulated losses or repay investors');
+});
+test('business cost stress removes profitability within the forecast',()=>{
+  assert.equal(calculateCombined({businessCost:48}).sustainedProfitMonth,null);
+  assert.equal(calculateCombined({businessCost:56.50}).sustainedProfitMonth,null);
 });

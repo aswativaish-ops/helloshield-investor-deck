@@ -796,3 +796,6 @@ dialog p + p { margin-top: 12px; }
 #competition .study-table th:first-child { width: 23%; }
 #competition .study-table th:nth-child(2) { width: 37%; }
 #competition .study-table th:nth-child(3) { width: 40%; }
+
+@media (min-width: 1000px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
+.business-plan { border-color: var(--peach); }
