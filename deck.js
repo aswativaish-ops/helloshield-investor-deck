@@ -52,8 +52,8 @@ const demos = {
     artifact:{kicker:'IMPLEMENTED; EXTERNAL PROOF PENDING',title:'The user receives the outcome',body:'Appointment agreement is not automatic calendar booking. Live recipient-call and owner-notification verification remains; this is not a general-purpose message-delivery claim.'}
   },
   pizza: {
-    photo:'', initials:'PZ', kind:'FUTURE PROPOSED USE CASE', caller:'Order pizza for delivery',
-    desk:'Not implemented', context:'Ask Ovi to place an approved pizza order',
+    photo:'', initials:'PZ', kind:'USER-ASSIGNED TASKS · FUTURE', caller:'Complete an approved task',
+    desk:'Example: ordering pizza for delivery', context:'Delegate a task with clear instructions and approval',
     permissions:['✓ Proposed order and spending approval','× No current purchasing or delivery capability'],
     steps:[['Specify','Choose order, address, and budget'],['Approve','Authorize the exact order and payment'],['Confirm','Obtain merchant acceptance and status']],
     speech:['Future concept: tell Ovi what pizza you want and where it should arrive.','A future flow would need explicit purchase approval, merchant handling, and payment safeguards.','A merchant would fulfill delivery. HelloShield would coordinate the order and report confirmed status.'],
@@ -116,13 +116,13 @@ function slideHTML(p) {
 
   if (p === 1) {
     return `<section class="slide" id="problem">
-      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>')}
+      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>', '<a class="secondary" href="scenario-catalog.html" target="_blank" rel="noopener">All 26 scenarios & status ↗</a>')}
       <div class="problem-grid">
         <div class="problem-copy">
           <p class="lead">Busy professionals face two jobs: deciding which incoming calls matter, and finding time to call people back.</p>
           <div class="choice"><span>INBOUND</span><strong>Answer and lose focus—or ignore a useful caller</strong></div>
           <div class="choice"><span>OUTBOUND</span><strong>Chase callbacks, wait on hold, repeat the context</strong></div>
-          <p class="takeaway">HelloShield screens incoming calls and Ovi handles authorized outbound appointment requests and their spoken messages. Both are implemented; live verification remains. Pizza ordering is a future use case.</p>
+          <p class="takeaway">HelloShield screens incoming calls and makes authorized appointment calls. Next: broader user-assigned tasks—for example, ordering pizza or arranging a service. Appointment calling needs live verification; standalone message delivery is a UI preview.</p>
         </div>
         <div class="attention-calc">
           <span class="kicker">ILLUSTRATIVE INTERRUPTION LOAD</span>
@@ -142,7 +142,7 @@ function slideHTML(p) {
       ['dental', 'Inbound appointment'],
       ['client', 'New client'],
       ['outbound', 'Outbound appointment / message'],
-      ['pizza', 'Pizza · future']
+      ['pizza', 'User-assigned tasks · future']
     ];
     return `<section class="slide" id="product">
       ${heading(3, 'THE PRODUCT', 'Incoming calls. Outgoing requests.<br><em>One personal call assistant</em>', `<span class="status">INTERACTIVE PROTOTYPE</span>`)}
@@ -169,7 +169,7 @@ function slideHTML(p) {
           <div class="demo-actions">${button('▶ Run this scenario', 'run-demo', 'primary')}</div>
         </div>
       </div>
-      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound and bounded outbound appointment/message flows are implemented; external proof and release finishing remain. Pizza ordering is proposed future work. Voicemail audio is not production-ready.</p>
+      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound and bounded outbound appointment/message flows are implemented; external proof and release finishing remain. Broader user-assigned tasks are proposed; pizza ordering is one example. Voicemail audio is not production-ready.</p>
     </section>`;
   }
 
@@ -228,7 +228,7 @@ function slideHTML(p) {
         <tr><td>Wajo</td><td>Broad workflows; personal screening not established in reviewed material</td><td>Calls and coordinates to complete tasks</td></tr>
         <tr><td>Poka</td><td>Personal inbound screening not established in reviewed material</td><td>AI calls, reservations, and follow-ups</td></tr>
         <tr class="hello-row"><td>HelloShield · implemented</td><td>Personal rules, two questions, useful human calls through</td><td>Ovi appointment requests and approved spoken request delivery; external proof pending</td></tr>
-        <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>Pizza ordering and broader merchant tasks · proposed, not implemented</td></tr>
+        <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>User-assigned tasks—for example, ordering pizza or arranging a service · proposed</td></tr>
       </tbody></table></div>
       <div class="future"><b>Why both directions?</b><span>Incoming calls compete for attention; outgoing requests take time. HelloShield combines screening with authorized appointment calls and outcome reporting.</span></div>
       <p class="bottom-note">Positioning to validate: personal rules, explicit authorization, and clear outcomes across both call directions. This is not a proven exclusive advantage. Outbound implementation does not mean live readiness. The current forecast models inbound plans only; outbound pricing and costs need a separate model.</p>
@@ -428,8 +428,8 @@ function act(action) {
     modal(`<div class="kicker">COMPETITIVE STUDY · REVIEWED 10 OCTOBER 2026</div><h2>What is different, and what we must prove</h2>
       ${competitors.map(c=>`<h3>${c.name}</h3><p><b>${c.offer}.</b> ${c.scale}. ${c.date}. ${c.learn}</p><p class="market-source"><a href="${c.source}" target="_blank" rel="noopener">Scale / company source ↗</a> · <a href="${c.feature}" target="_blank" rel="noopener">Product source ↗</a></p>`).join('')}
       <h3>What HelloShield can credibly say</h3><p>HelloShield combines inbound screening with Ovi outbound appointment requests: the user authorizes a recipient, a resolved time, and the request; Ovi conveys the spoken request, collects the recipient’s response, and returns the outcome. The outbound implementation is recorded in the development tracker and ongoing deployment work. Status: Implemented; external proof pending. The latest rollout report still requires live call transport, authorization, and a controlled recipient-to-owner outcome test.</p>
-      <p>Message delivery here means conveying the approved appointment request by voice. General free-form message delivery needs its own evidence before being presented as verified. Agreement to a time does not prove calendar booking. A completed call does not prove agreement.</p>
-      <h3>Future use case: pizza ordering</h3><p>Ovi could eventually place an approved pizza order for delivery. That needs order and spending approval, merchant acceptance, payment safeguards, and fulfillment status. The merchant delivers the pizza. This remains a proposed use case and is outside the current implementation and financial forecast.</p>
+      <p>Message delivery here means conveying the approved appointment request by voice. The separate Deliver message controls offer Ovi’s voice or the user’s recorded voice, but the newer app chats explicitly label actual delivery as unimplemented. Those are UI previews, distinct from the implemented appointment request. Agreement to a time does not prove calendar booking. A completed call does not prove agreement.</p>
+      <h3>Future category: user-assigned tasks</h3><p>Ovi could eventually carry out approved user-assigned tasks. Examples include ordering pizza for delivery, requesting a reservation, or arranging a service. For the pizza example, this needs order and spending approval, merchant acceptance, payment safeguards, and fulfillment status. The merchant delivers the pizza. This remains a proposed task category and is outside the current implementation and financial forecast.</p>
       <h3>How the combined offering could stand out</h3><p>Test whether customers value one personal assistant for screening incoming calls and making authorized outbound requests, with explicit decisions and clear results. Truecaller already has screening; Wajo and Poka already support outbound actions. Combining directions is positioning to validate, not proof of exclusivity or superiority. The patent application is filed; technical scope is not disclosed and no granted exclusivity is claimed.</p>
       <p>The $4.99 / $8.99 forecast currently covers inbound call usage. Outbound allowances, pricing, and provider costs must be modeled before selling a combined paid package; no outbound or pizza revenue has been added to the projections.</p>
       <h3>Turn research into a customer-acquisition test</h3><p>Interview 10 native-screening users, 10 Truecaller/Hiya users, and 10 people using no assistant. These are research segments within the initial professional pilot, not extra customers. Compare setup success, important-call misses, interruptions, retention, and willingness to pay. Publish comparisons only with measured evidence and participant permission. Use the strongest result in demos, referral invitations, and community partnerships.</p>
