@@ -51,7 +51,7 @@ const demos = {
     permissions:['✓ User approves recipient and request','✓ Recipient decision determines the result'],
     steps:[['Approve','Review recipient, time, and message'],['Call','Convey the request and ask availability'],['Report','Return confirmed, declined, or unresolved']],
     speech:['“Please call my contact and ask whether Tuesday at 2 PM works.”','After the required introduction and consent, Ovi conveys the approved appointment request.','Report the recipient’s actual response. A completed phone call alone is not a confirmed appointment.'],
-    artifact:{kicker:'IMPLEMENTED; EXTERNAL PROOF PENDING',title:'The user receives the outcome',body:'Appointment agreement is not automatic calendar booking. Live recipient-call and owner-notification verification remains; this is not a general-purpose message-delivery claim.'}
+    artifact:{kicker:'BUILT · REAL-WORLD TESTING REQUIRED',title:'The user receives the outcome',body:'Appointment agreement is not automatic calendar booking. Real calls and delivery of results to the user still need testing. Standalone message delivery remains a demonstration.'}
   },
   pizza: {
     photo:'', initials:'PZ', kind:'USER-ASSIGNED TASKS · FUTURE', caller:'Complete an approved task',
@@ -118,7 +118,7 @@ function slideHTML(p) {
 
   if (p === 1) {
     return `<section class="slide" id="problem">
-      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>', '<a class="secondary" href="scenario-catalog.html" target="_blank" rel="noopener">All 30 scenarios & status ↗</a>')}
+      ${heading(2, 'THE PROBLEM', 'Calls interrupt. Follow-ups pile up.<br><em>Handle calls coming in and going out</em>')}
       <div class="problem-grid">
         <div class="problem-copy">
           <p class="lead">Busy people and small-business teams face two jobs: handling useful incoming calls and finding time for reminders and follow-up.</p>
@@ -143,7 +143,7 @@ function slideHTML(p) {
     const tabs = [
       ['dental', 'Inbound appointment'],
       ['client', 'New client'],
-      ['outbound', 'Outbound appointment / message'],
+      ['outbound', 'Outgoing appointment request'],
       ['pizza', 'User-assigned tasks · future']
     ];
     return `<section class="slide" id="product">
@@ -171,7 +171,7 @@ function slideHTML(p) {
           <div class="demo-actions">${button('▶ Run this scenario', 'run-demo', 'primary')}</div>
         </div>
       </div>
-      <p class="bottom-note">Illustrative scenarios, not live calls. Inbound screening and outbound appointment requests are implemented; external proof remains. Standalone message delivery is a UI preview. Broader user-assigned tasks are proposed; pizza ordering is one example. Voicemail audio is not production-ready.</p>
+      <p class="bottom-note">Illustrative scenarios, not live calls. Incoming-call screening and outgoing appointment requests are built; real-world testing is still required. Standalone messages are a demonstration only. Broader tasks, such as ordering pizza, are planned. Recorded voicemail is not ready for general release.</p>
     </section>`;
   }
 
@@ -219,7 +219,7 @@ function slideHTML(p) {
       <div class="selected-plan business-plan"><span class="kicker">PROPOSED · ONE BUSINESS LOCATION</span><h3>Business</h3><strong>$79<small>/ month</small></strong><p>For small hotels, salons, and service offices</p><p><b>200 combined inbound/outbound minutes</b></p><p>Call screening, scheduled reminders, and a shared reply view.</p><small>1 local number · Extra usage $0.30/min with approval. Estimated service cost: $36/account; 54.4% gross margin.</small></div></div>
       <div class="why-pay"><b>BUSINESS PILOT FIRST</b><span>5 design partners → validate costs and price</span><span>Personal trial: 30 days / 10 minutes</span><span>Business features and billing require implementation</span></div>
       <div class="profit-callout"><strong>Business: $79 sales − $36 service cost = $43 per account</strong><span>This $43 still has to cover customer acquisition and operating bills. At 100 businesses: $7,900 monthly subscription run rate. Extra-usage revenue is excluded from the base forecast.</span></div>
-      <p class="bottom-note">Business paid launch assumed in month 7, after release gates. Minutes cover screening and connected call time across both directions; provider leg costs are in the service budget. Core contiguous U.S. local calls only; special destinations require separate pricing. Personal plans remain inbound-only. Proposed allowances are not live billing.</p>
+      <p class="bottom-note">Business paid launch assumed in month 7, after required testing and approvals. Minutes cover screening and connected call time across both directions; call-handling costs are included in the service budget. Core contiguous U.S. local calls only; special destinations require separate pricing. Personal plans remain inbound-only. Proposed allowances are not live billing.</p>
     </section>`;
   }
   if (p === 6) {
@@ -230,18 +230,18 @@ function slideHTML(p) {
         <tr><td>Truecaller / Hiya</td><td>Caller ID and protection; Truecaller Assistant screens</td><td>Outbound task completion is not the reviewed core offer</td></tr>
         <tr><td>Wajo</td><td>Broad workflows; personal screening not established in reviewed material</td><td>Calls and coordinates to complete tasks</td></tr>
         <tr><td>Poka</td><td>Personal inbound screening not established in reviewed material</td><td>AI calls, reservations, and follow-ups</td></tr>
-        <tr class="hello-row"><td>HelloShield · implemented</td><td>Personal rules, two questions, useful human calls through</td><td>Ovi appointment requests and approved spoken request delivery; external proof pending</td></tr>
+        <tr class="hello-row"><td>HelloShield · implemented</td><td>Personal rules, two questions, useful human calls through</td><td>Approved appointment calls and replies; real-world testing still required</td></tr>
         <tr class="hello-row"><td>HelloShield · future expansion</td><td>Extend the personal call workflow</td><td>Business reminders and customer replies; broader user-assigned tasks · proposed</td></tr>
       </tbody></table></div>
       <div class="future"><b>Why both directions?</b><span>Incoming calls compete for attention; outgoing requests take time. HelloShield combines screening with authorized appointment calls and outcome reporting.</span></div>
-      <p class="bottom-note">Positioning to validate: personal rules, explicit authorization, and clear outcomes across both call directions. This is not a proven exclusive advantage. Outbound implementation does not mean live readiness. The combined forecast includes the proposed Business plan’s inbound/outbound usage from month 7. General task and purchase revenue remains excluded.</p>
+      <p class="bottom-note">Positioning to validate: personal rules, explicit authorization, and clear outcomes across both call directions. This is not a proven exclusive advantage. Outgoing calls still need real-world testing before launch. The combined forecast includes the proposed Business plan’s inbound/outbound usage from month 7. General task and purchase revenue remains excluded.</p>
     </section>`;
   }
   if (p === 7) {
     return `<section class="slide" id="validation">
       ${heading(8,'COMBINED REVENUE & PROFIT','People + businesses<br><em>Revenue grows; costs grow too</em>',button('Growth & annual calculations ↗','growth-plan','secondary'))}
       <div class="rollout-grid"><div class="launch-thesis"><span class="kicker">CUSTOMER TARGETS · NOT SIGNED ACCOUNTS</span><h3>Personal launch, then business</h3>
-        <div class="free-funnel"><div><b>Months 1–6</b><span>30 testers, including 5 business design partners. Build and verify business workflows; no business sales.</span></div><div><b>Year one</b><span>Target 1,000 personal users + 100 business accounts. Business sales begin in month 7 only after release gates.</span></div><div><b>Year three → five</b><span>15,000 → 50,000 personal users; 1,500 → 5,000 businesses. Founder demos, local partners, referrals, then measured campaigns.</span></div></div>
+        <div class="free-funnel"><div><b>Months 1–6</b><span>30 testers, including 5 business design partners. Build and verify business workflows; no business sales.</span></div><div><b>Year one</b><span>Target 1,000 personal users + 100 business accounts. Business sales begin in month 7 only after required testing and approvals.</span></div><div><b>Year three → five</b><span>15,000 → 50,000 personal users; 1,500 → 5,000 businesses. Founder demos, local partners, referrals, then measured campaigns.</span></div></div>
         <small>Business assumptions: $250 to acquire/onboard a paid account, 20% pilot conversion, and 1% monthly cancellations. Personal: $20 acquisition, 25% conversion, 2% cancellations.</small>
       </div><div class="economics"><span class="kicker">FULL-YEAR TOTALS · COMBINED BASE SCENARIO</span>
         <table class="forecast-table"><thead><tr><th>Year</th><th>Personal / business<br>at year end</th><th>Annual<br>sales</th><th>Operating<br>profit / loss</th><th>Margin</th></tr></thead><tbody>${combined.annual.map(r=>`<tr><td>${r.year}</td><td>${number(r.users)} / ${number(r.businesses)}</td><td>${money(r.revenue)}</td><td class="${r.profit>=0?'gain':'loss'}">${money(r.profit)}</td><td>${percent(r.margin)}</td></tr>`).join('')}</tbody></table>
@@ -257,7 +257,7 @@ function slideHTML(p) {
       <div class="team-layout">
         <div class="founder"><span class="founder-mark">AK</span><div><span class="kicker">FOUNDER & PRODUCT LEAD</span><h3>Abhishek Kaushal</h3><p>19+ years of technology experience, including cloud strategy and engineering management.</p><p>Google Certified Architect · Google Certified Data Engineer · FinOps Practitioner</p><p><b>Worked at Deloitte.</b><br><b>More than 3 years at T-Mobile in the telecom domain.</b></p></div><div class="diligence"><b>Patent application filed</b><span>A patent application has been filed for HelloShield. Technical scope is not disclosed in this deck; no granted patent is claimed.</span></div></div>
         <div class="capabilities"><span class="kicker">START SMALL · HIRE AGAINST MILESTONES</span>
-          ${[['Founder-led launch', 'Own product, pilot recruitment, and delivery.'], ['First engineering hires', 'Prioritize telephony/backend and iOS reliability as funding and workload allow.'], ['Specialist support', 'Use testing, security, and legal specialists where needed.'], ['Growth hire later', 'Add dedicated growth support after users pay and stay.']].map((item,index)=>`<div><i>0${index+1}</i><span><b>${item[0]}</b><small>${item[1]}</small></span></div>`).join('')}
+          ${[['Founder-led launch', 'Own product, pilot recruitment, and delivery.'], ['First engineering hires', 'Make calls reliable and the app dependable as funding and workload allow.'], ['Specialist support', 'Use testing, security, and legal specialists where needed.'], ['Growth hire later', 'Add dedicated growth support after users pay and stay.']].map((item,index)=>`<div><i>0${index+1}</i><span><b>${item[0]}</b><small>${item[1]}</small></span></div>`).join('')}
         </div>
       </div>
       <div class="execution-question"><span>BUILD TRUST FIRST</span><b>Finish the app, verify useful calls get through, and prove people choose to keep paying.</b></div>
@@ -286,7 +286,7 @@ function slideHTML(p) {
   return `<section class="slide closing" id="invitation">
     <div class="closing-copy">${eyebrow(11,'INVESTOR INVITATION')}
       <h2>Help launch HelloShield<br><em>And prove people will pay</em></h2>
-      <p>A call assistant for busy people and small businesses. Inbound screening and bounded outbound appointment calling are implemented; business reminder workflows are a proposed expansion.</p>
+      <p>A call assistant for busy people and small businesses. Incoming-call screening and outgoing appointment requests are built and need real-world testing. Business reminders are a planned expansion.</p>
       <div class="seed-objective"><span>SEEKING $1.5 MILLION</span><b>18-month plan: finish the app, launch a controlled pilot, and prove repeat paid use.</b></div>
       <div class="contact"><b>Abhishek Kaushal</b><span>Founder & Product Lead · HelloShield</span><span>19+ years in technology, cloud strategy, and engineering management</span><span>Google Certified Architect · Google Certified Data Engineer</span><span>FinOps Practitioner</span><span>Worked at Deloitte · More than 3 years at T-Mobile in telecom</span><span>Patent application filed · Technical scope not disclosed</span><span>Dallas, Texas · Company registration planned</span><a href="${PROFILE}" target="_blank" rel="noopener">Abhishek’s LinkedIn profile ↗</a></div>
     </div>
