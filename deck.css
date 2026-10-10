@@ -766,3 +766,26 @@ dialog p + p { margin-top: 12px; }
 }
 
 .demo-steps small { display: block; margin-top: 4px; }
+
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.market-row strong small { display: block; font-size: 12px; text-align: right; font-weight: 400; }
+#market .market-math > div { grid-template-columns: 112px 1fr; }
+.table-scroll { overflow-x: auto; }
+.study-table { margin: 0; font-size: 13px; }
+.study-table th, .study-table td { padding: 9px 10px; }
+.study-table th:first-child { width: 9%; }
+.study-table th:nth-child(2) { width: 23%; }
+.study-table th:nth-child(3) { width: 29%; }
+.study-table small { display: block; margin-top: 3px; font-size: 11px; }
+.forecast-table { font-size: 13px; }
+.forecast-table td, .forecast-table th { padding: 10px 5px; }
+.gain { color: var(--green); font-weight: 700; }
+.loss { color: var(--peach); }
+#validation .rollout-grid { grid-template-columns: .85fr 1.15fr; }
+#business-model .profit-callout { margin-top: 12px; }
+@media (max-width: 760px) {
+  .pricing-grid, #validation .rollout-grid { grid-template-columns: 1fr; }
+  .study-table { min-width: 800px; }
+  .forecast-table th { font-size: 10px; letter-spacing: 0; }
+  #market .market-row strong small { text-align: left; }
+}
